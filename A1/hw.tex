@@ -140,4 +140,158 @@ with our constaints and it must be a member of the solution set for (\ref{eq4}).
 Finally, we can describe the real solutions
 to (\ref{eq4}) by $x \in \{ \frac{-9}{4}, \frac{5}{4} \}$.
 
+\medskip
+\textbf{1(c):}
+
+Suppose we have the following inequality: 
+
+\begin{align} \label{eq7}
+	|x-2| < 3
+\end{align}
+
+Some $x \in \reals$ solves (\ref{eq7}) if and only if
+$x \in (-\infty,2] \lor x \in [2, \infty)$
+since $(-\infty,2] \cup [2,\infty) = \reals$.
+
+
+Assume $x \le 2$.
+Then, $x - 2 \le 0 \implies |x-2| = -(x-2) = -x+2$,
+so we can solve (\ref{eq7}):
+
+\begin{align}
+	&-x+2 &< &3 \\
+	\implies &-x &< &1 \\
+	\implies &x & > &-1
+\end{align}
+
+Therefore we have $-1 < x \le 2$ when $x \le 2$
+
+Assume $x \geq 2$
+
+Then, $x - 2 \geq 0 \implies |x-2| = x-2$
+so we can solve (\ref{eq7}):
+
+\begin{align}
+	&x-2 &< 3 \\
+	\implies &x &> 5
+\end{align}
+
+Therefore we have $2 \le x < 5$ when $x \geq 2$
+
+Since those two cases describe every case of $x \in \reals$,
+we must have that $-1 < x \le 2 \lor 2 \le x < 5$,
+thus we have demonstrated that $-1 < x < 5$ solves (\ref{eq7}).
+
+\medskip
+\textbf{1(d):}
+
+Suppose we have the following inequality:
+
+\begin{align} \label{eq8}
+	x + \frac{2-4x}{x+1} > 0
+\end{align}
+
+Since $x = \frac{x(x+1)}{x+1}$,
+we can simplify (\ref{eq8}) as follows:
+
+\begin{align}
+	\frac{x(x+1) + (2-4x)}{x+1} &> 0 \\
+	\frac{x^2 + x + 2-4x}{x+1} &> 0 \\
+	\frac{x^2 -3x + 2}{x+1} &> 0 \\
+	\label{eq9}
+	\frac{(x-1)(x-2)}{x+1} &> 0
+\end{align}
+
+Since (\ref{eq9}) is undefined when $x = -1$,
+we must have either $x < -1$ or $x > -1$.
+
+Assume $x > -1$.
+Then, (\ref{eq9}) holds if and only if
+$(x - 1 > 0 \land  x-2 > 0) \lor (x-1 < 0 \land x-2 < 0)$.
+
+Under this assumption, consider the following two cases:
+
+\begin{itemize}
+	\item
+Assume $x - 1 > 0 \land x - 2 > 0$.
+Then, $x > 1 \land x > 2 \implies x > 2$.
+
+We conclude that a subset of our solution set is the interval $(2, \infty)$.
+
+\item
+Assume $x - 1 < 0 \land x - 2 < 0$.
+Then, $x < 1 \land x < 2 \implies x < 1$.
+
+We conclude that a subset of our solution set is the interval $(-1, 1)$.
+\end{itemize}
+
+Now, assume $x < -1$.
+Then, (\ref{eq9}) holds if and only if
+$(x - 1 > 0 \land  x-2 < 0) \lor (x-1 < 0 \land x-2 > 0)$.
+
+Under this assumption, consider the following two cases:
+
+\begin{itemize}
+	\item
+	Assume $x - 1 > 0 \land x - 2 < 0$.
+	Then, $x > 1 \land x < 2$,
+	but by assumption, $x < -1$, which is a contradition,
+	so we reject this assumption.
+	\item
+	Assume $x - 1 < 0 \land x - 2 > 0$.
+	Then, $x < 1 \land x > 2$, which is a contradiction,
+	so we reject this assumption.
+\end{itemize}
+
+Finally, we conclude that our complete solution set
+must be the interval $(-1,1) \cup (2, \infty)$.
+
+\medskip
+\textbf{2:}
+
+Let $A$ and $B$ be two sets such that
+$A = \{x \in \reals: x > 0 \land x^2 \geq 3\}$
+and $B = \{x \in \reals: x^2 < 3\} \cup \{x \in \reals: x \le 0\}$.
+
+The definition of a Dedekind Cut was given in class as follows:
+$(X,Y)$ forms a Dedekind Cut of $\reals$ if:
+\begin{enumerate}
+	\item
+	$X \subset \reals \land Y \subset \reals$
+	\item
+	$X \neq \emptyset \land Y \neq \emptyset$
+	\item
+	$(\forall x \in X)(\forall x \in Y)(x < y)$.
+\end{enumerate}
+
+\medskip
+$(A,B)$ does not form a Dedekind Cut since $3 > 0$, and $3 \in A \land 0 \in B$.
+violating the third constraint. Therefore, we instead consider the Dedekind cut $(B,A)$.
+
+By construction (axiom schema of comprehension), we have that $A \subseteq \reals \land B \subseteq \reals$.
+Since $0 \not\in A$, we must have $A \subset \reals$,
+and since $3^2 > 2 \implies 3 \not\in B$, we have $B \subset \reals$.
+Therefore the first constraint is satisfied.
+
+Suppose $x = 0$. Then $x \in B$ by its definition, so $B \neq \emptyset$.
+Suppose $x = 3$. Then, $x^2 = 9  \geq 3 \implies x \in A$, so $A \neq \emptyset$.
+Therefore the second constraint is satsisfied.
+
+Let $a \in A$ and let $b \in B$.
+By definition, we have that $a > 0$.
+If $b \leq 0$, then $b \leq 0 < a \implies b < a$ is trivial.
+Assume $b > 0$. By the definition of $B$, we have that $b^2 \leq 3$,
+and by the definition of $A$, we have $a^2 \geq 3$.
+Then by transitivity, we have $b^2 < 3 \le a^2 \implies b^2 < a^2$,
+therefore $b^2 - a^2 = (b+a)(b-a) < 0$.
+Since $b > 0 \land a > 0$, we must have $b + a > 0$,
+and therefore since $(b+a)(b-a) < 0$ if and only if
+$(b+a > 0 \land b-a < 0) \lor (b + a < 0 \land b - a > 0)$,
+we must have that $b-a < 0$ and thus $b < a$.
+We conclude that $(\forall b \in B)(\forall a \in A)(b < a)$,
+therefore the third constraint is satisfied.
+
+Since $(B,A)$ satisfies all of the constraints of the definition
+of a Dedekind Cut of the reals, we conclude that it indeed must be a Dedekind Cut.
+
 \end{document}
