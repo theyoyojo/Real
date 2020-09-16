@@ -1,0 +1,96 @@
+\documentclass{article}
+
+\usepackage{amsmath, amssymb}
+\newcommand{\reals}{\mathbb{R}}
+
+\title{Real Analysis Assignment 1}
+\author{Joel Savitz}
+
+\begin{document}
+
+\maketitle
+
+\textbf{1(a):}
+
+Suppose we have the following equation:
+
+\begin{align} \label{eq1}
+	|x-1| + |x+2| = 0.5
+\end{align}
+
+We have $x \in \reals $ if and only if:
+\begin{align} \label{eq0}
+	x \le -2 \lor -2 \le x \le 1 \lor 1 \le x
+\end{align}
+
+since $(-\infty,-2] \cup [-2,1] \cup [1,\infty) = \reals$.
+
+Assume $x \le -2$.
+Then, $x-1 < 0 \implies |x-1| = -(x-1)$,
+and $x+2 \le 0 \implies |x+2| = -(x+2)$,
+so we can solve (\ref{eq1}) as follows:
+
+\begin{align}
+	& -(x-1) -(x+2) & = 0.5 \\
+	= & -x+1 -x-2 & = 0.5 \\
+	= & -2x-1 & = 0.5 \\
+	\implies & -2x & = 1.5 \\
+	\label{eq2} \implies & x & = \frac{1.5}{-2} = \frac{-3}{4}
+\end{align}
+
+However, we have by assumption that $x \le -2$,
+and by (\ref{eq2}) we have that $x = \frac{-3}{4} > -2$,
+which is a contradition.
+Therefore, $x \le -2$ is false for any real solution to (\ref{eq1}).
+
+Assume $-2 \le x \le 1$.
+Then, $x-1 \le 0 \implies |x-1| = -(x-1)$,
+and $x+2 \geq 0 \implies |x+2| = x+2$,
+so we can solve (\ref{eq1}) as follows:
+
+\begin{align}
+	& -(x-1) + x+2 & = 0.5 \\
+	= & -x+1 + x+2 & = 0.5 \\
+	= & 3 & = 0.5
+\end{align}
+
+But of course, $3 = 0.5$ is absurd,
+therefore we reach a contradiction
+and conclude that $-2 \le x \le 1$ is false for any real solution to (\ref{eq1}).
+
+Assume $x \geq 1$:
+Then, $x-1 \geq 0 \implies |x-1| = x-1$,
+and $x+2 > 0 \implies |x+2| = x+2$,
+so we can solve (\ref{eq1}) as follows:
+
+\begin{align}
+	& x-1 +x+2 & = 0.5 \\
+	= & 2x+1 & = 0.5 \\
+	\implies & 2x & = -0.5 \\
+	\label{eq3} \implies & x & = \frac{-0.5}{2} = \frac{-1}{4}
+\end{align}
+
+However, we have by assumption that $x \geq 1$,
+and by (\ref{eq3}) we have that $x = \frac{-1}{4} < 1$,
+which is a contradition.
+Therefore, $x \geq 1$ is false for any real solution to (\ref{eq1}).
+
+Finally, since we have $x \not \in (-\infty,-2] \land x \not\in [-2,1] \land x \not \in [1,\infty)$,
+we have $x \not \in \reals = (-\infty,-2] \cup [-2,1] \cup [1,\infty)$,
+therefore we have demonstrated that there are no real solutions to (\ref{eq1}).
+
+\medskip
+\textbf{1(b):}
+
+Suppose we have the following equation:
+
+\begin{align} \label{eq1}
+	|x-1| + |x+2| = 3.5
+\end{align}
+
+We have $x \in \reals $ if and only if:
+\begin{align} \label{eq0}
+	x \le -2 \lor -2 \le x \le 1 \lor 1 \le x
+\end{align}
+
+\end{document}
