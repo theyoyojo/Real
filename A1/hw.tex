@@ -166,14 +166,13 @@ so we can solve (\ref{eq7}):
 
 Therefore we have $-1 < x \le 2$ when $x \le 2$
 
-Assume $x \geq 2$
-
+Assume $x \geq 2$.
 Then, $x - 2 \geq 0 \implies |x-2| = x-2$
 so we can solve (\ref{eq7}):
 
 \begin{align}
 	&x-2 &< 3 \\
-	\implies &x &> 5
+	\implies &x &< 5
 \end{align}
 
 Therefore we have $2 \le x < 5$ when $x \geq 2$
@@ -261,7 +260,7 @@ $(X,Y)$ forms a Dedekind Cut of $\reals$ if:
 	\item
 	$X \neq \emptyset \land Y \neq \emptyset$
 	\item
-	$(\forall x \in X)(\forall x \in Y)(x < y)$.
+	$(\forall x \in X)(\forall y \in Y)(x < y)$.
 \end{enumerate}
 
 \medskip
@@ -270,7 +269,7 @@ violating the third constraint. Therefore, we instead consider the Dedekind cut 
 
 By construction (axiom schema of comprehension), we have that $A \subseteq \reals \land B \subseteq \reals$.
 Since $0 \not\in A$, we must have $A \subset \reals$,
-and since $3^2 > 2 \implies 3 \not\in B$, we have $B \subset \reals$.
+and since $3^2 \geq 3 \implies 3 \not\in B$, we have $B \subset \reals$.
 Therefore the first constraint is satisfied.
 
 Suppose $x = 0$. Then $x \in B$ by its definition, so $B \neq \emptyset$.
