@@ -1,0 +1,170 @@
+\documentclass{article}
+
+\usepackage{amsmath, amssymb, amsthm}
+\newcommand{\reals}{\mathbb{R}}
+\newcommand{\nats}{\mathbb{N}}
+\newtheorem{thm}{Theorem}
+
+\title{Real Analysis Assignment 2}
+\author{Joel Savitz}
+
+\begin{document}
+
+\maketitle
+
+Note: For the scope of this document, let $\ni$ denote ``such that''
+
+\textbf{1:}
+
+Suppose $E$ is a non-empty subset of $\reals$ that is bounded below,
+i.e. $E \subseteq \reals \ni (E \neq \emptyset) \land (\exists x \in \reals \ni \forall y \in E, x \le y)$.
+
+\begin{thm} \label{thm1}
+	$\inf E$ exists.
+\end{thm}
+
+\begin{proof}
+	Let $A$ be the set of all lower bounds of $E$,
+	and let $B$ be the set of all non-lower bounds of $E$.
+	More precisely,
+	let $A = \{ x \in \reals: \forall y \in E, x \le y \}$,
+	and let $B = \{x \in \reals: \exists y \in E: x > y \}$.
+
+	Suppose $x \in \reals$. Then,
+	we have either $\exists y \in \reals \ni x > y$
+	or we have $\neg (\exists y \in \reals \ni x > y) = \forall y \in \reals x \le y$,
+	i.e. either $x$ is not a lower bound of $E$ or it is.
+	If the former, then by definition $x \in B$,
+	and if the latter, then $x \in A$.
+	Since this covers every possible element of $\reals$,
+	we have that $A \cup B = \reals$.
+
+	Suppose $x \in E$.
+	Then, since $x < x + 1$,
+	we have that $\exists y \in E \ni y < x + 1$,
+	and this $y$ is our previously introduced $x$,
+	therefore $x + 1 \in B$ since it is not a lower bound of $E$,
+	and so $B \neq \emptyset$.
+
+	Since $E$ is bounded below,
+	we have that $\exists x \in \reals \ni \forall y \in E, x \le y$
+	by the definition of a lower bound,
+	and this is exactly the definition of membership in $A$, so $x \in A$,
+	and therefore $A \neq \emptyset$.
+
+	Now let $a \in A$ and $b \in B$.
+	$b \in B \iff \exists y \in E \ni y < b$,
+	so let $\beta \in E$ be such that $\beta < b$.
+	$a \in A \iff \forall x \in E, a \le x$,
+	and since $\beta \in E$, we have $a \le \beta$.
+	Putting these together, we have $a \le \beta < b$,
+	and by transitivity of order we have $a < b$,
+	therefore in general we have that
+	$\forall a \in A, \forall b \in B, a < b$.
+
+	Since $A \cup B = \reals \land A \neq \emptyset \land B \neq \emptyset \land
+	\forall a \in A, b \in B, a < b$,
+	we have that $(A,B)$ is a Dedekind cut of $\reals$.
+
+	By Dedekind's axiom,
+	we have that for any Dedekind cut $(X,Y)$ of $\reals$,
+	there exists some $z \in \reals \ni \forall x \in X, \forall y \in Y, x \le z \le y$.
+
+	Therefore, there exists some $c \in \reals$
+	such that $\forall a \in A, \forall b \in B, a \le c \le b$.
+
+	Assume that $c$ is not a lower bound of $E$.
+	Then, $\exists x \in E \ni x < c$.
+	Let $y = \frac{x + c}{2}$.
+	Then, $x < y < c$.
+	Since $\exists x \in E \ni x < y$,
+	we have $y \in B$ by definition,
+	so $\exists b \in B \ni b < c$,
+	however we have by Dedekind's axiom
+	that $\forall b \in B, c \le B$,
+	which is a contradiction.
+	Therefore $c$ must be a lower bound of $E$.
+
+	Let $x$ be some lower bound of $E$.
+	Then, $\forall y \in E, x \le y$, so $x \in A$.
+	By Dedekind's axiom, we have that
+	$\forall a \in A, a \le c$,
+	therefore $x \le c$,
+	so $c$ must be the greatest lower bound of $E$,
+	or in other words, $c = \inf E$.
+
+	Since we have constructed $\inf E$,
+	we have demonstrated that $\inf E$ exists,
+	and this proves theorem \ref{thm1}.
+
+\end{proof}
+
+\medskip
+\textbf{2:}
+
+Suppose $E_1, E_2$ are nonempty subsets of $\reals$ bounded above, where $E_1$ is a subset of $E_2$,
+i.e. $E_1 \subseteq \reals, E_2 \subseteq \reals \ni E_1 \subseteq E_2 \land E_1 \neq \emptyset \neq E_2
+\land (\exists x \in \reals \ni \forall y \in E_1, y \le x)
+\land (\exists x \in \reals \ni \forall y \in E_2, y \le x)$.
+
+\begin{thm} \label{thm2}
+	$\sup E_1 \le \sup E_2$.
+\end{thm}
+
+\begin{proof}
+	By the Dedekind property of $\reals$,
+	$\sup E_2$ exists.
+	Let $\beta = \sup E_2$.
+	Then, $\forall x \in E_2, x \le \beta$.
+
+	Let $x \in E_1$.
+	Since $E_1 \subseteq E_2 \iff y \in E_1 \implies y \in E_2$,
+	we have $x \in E_2$,
+	therefore $x \le \beta$,
+	so $\forall x \in E_1, x \le \beta$,
+	and we have that $\beta$ is an upper bound of $E_1$.
+
+	By the Dedekind property of $\reals$,
+	$\sup E_1$ exists.
+	Let $\alpha = \sup E_1$.
+	By definition, $\alpha$ is the least upper bound of $E_1$,
+	i.e. $(\forall x \in \reals \ni \forall y \in E_1, x \geq y)(\alpha \le x)$.
+	Since $\beta$ an upper bound of $E_1$, i.e. $\forall x \in E_1, \beta \geq x$,
+	we must then have that $\alpha \le \beta$,
+	or in other words $\sup E_1 \le \sup E_2$.
+	This proves theorem \ref{thm2}.
+\end{proof}
+
+\textbf{3:}
+
+Let $A = \{ x \in \reals: x = 2 + \frac{1}{n} \textrm{ for some } n \in \nats\}$.
+
+\begin{thm} \label{thm3}
+	$\inf A = 2$
+\end{thm}
+
+\begin{proof}
+	Let $n \in \nats$.
+	Then, $n > 0 \implies \frac{1}{n} > 0$,
+	thus $2 + \frac{1}{n} > 2 + 0 = 2$.
+	so $\forall n \in \nats, 2 + \frac{1}{n} > 2$,
+	therefore $2$ must be a lower bound of $A$.
+
+	Let $\epsilon \in \reals \ni \epsilon > 0$.
+	By the archimedian property of $\reals$,
+	$\exists n \in \nats \ni \epsilon > \frac{1}{n} > 0$,
+	therefore $2 + \epsilon > 2 + \frac{1}{n} > 2$.
+	$2 + \frac{1}{n} \in A$ by definition,
+	therefore $\exists x \in A \ni x < 2 + \epsilon$
+	for all $\epsilon > 0$,
+	where $x = 2 + \frac{1}{n}$.
+	Since any arbitrarily small amount greater than $2$
+	is not a lower bound of $A$,
+	and since $2$ is a lower bound of $A$,
+	$2$ must therefore be the greatest lower bound of $A$,
+	or in other words, $2 = \inf A$.
+	This proves theorem \ref{thm3}.
+
+\end{proof}
+
+\end{document}
