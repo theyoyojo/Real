@@ -32,7 +32,7 @@ i.e. $E \subseteq \reals \ni (E \neq \emptyset) \land (\exists x \in \reals \ni 
 
 	Suppose $x \in \reals$. Then,
 	we have either $\exists y \in \reals \ni x > y$
-	or we have $\neg (\exists y \in \reals \ni x > y) = \forall y \in \reals x \le y$,
+	or we have $\neg (\exists y \in \reals \ni x > y) = \forall y \in \reals, x \le y$,
 	i.e. either $x$ is not a lower bound of $E$ or it is.
 	If the former, then by definition $x \in B$,
 	and if the latter, then $x \in A$.
@@ -81,7 +81,7 @@ i.e. $E \subseteq \reals \ni (E \neq \emptyset) \land (\exists x \in \reals \ni 
 	we have $y \in B$ by definition,
 	so $\exists b \in B \ni b < c$,
 	however we have by Dedekind's axiom
-	that $\forall b \in B, c \le B$,
+	that $\forall b \in B, c \le b$,
 	which is a contradiction.
 	Therefore $c$ must be a lower bound of $E$.
 
@@ -131,7 +131,8 @@ i.e. $E_1 \subseteq \reals, E_2 \subseteq \reals \ni E_1 \subseteq E_2 \land E_1
 	i.e. $(\forall x \in \reals \ni \forall y \in E_1, x \geq y)(\alpha \le x)$.
 	Since $\beta$ an upper bound of $E_1$, i.e. $\forall x \in E_1, \beta \geq x$,
 	we must then have that $\alpha \le \beta$,
-	or in other words $\sup E_1 \le \sup E_2$.
+	by the definition of least upper bound.
+	In other words $\sup E_1 \le \sup E_2$.
 	This proves theorem \ref{thm2}.
 \end{proof}
 
@@ -148,7 +149,9 @@ Let $A = \{ x \in \reals: x = 2 + \frac{1}{n} \textrm{ for some } n \in \nats\}$
 	Then, $n > 0 \implies \frac{1}{n} > 0$,
 	thus $2 + \frac{1}{n} > 2 + 0 = 2$.
 	so $\forall n \in \nats, 2 + \frac{1}{n} > 2$,
-	therefore $2$ must be a lower bound of $A$.
+	therefore $2$ must be a lower bound of $A$,
+	since every $x \in A$ will be of the form
+	$2 + \frac{1}{n}$ for some $n \in \nats$.
 
 	Let $\epsilon \in \reals \ni \epsilon > 0$.
 	By the archimedian property of $\reals$,
