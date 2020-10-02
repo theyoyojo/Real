@@ -9,6 +9,7 @@
 \newcommand{\movern}{\overn{(-1)^n}}
 \newcommand{\bsn}{\sqrt{9-\movern}}
 \newcommand{\csn}{\sqrt{4n^2+9n+1}}
+\newcommand{\dsn}{\sqrt{n^2 + 5n}}
 \newtheorem{clm}{Claim}
 
 \title{Real Analysis Assignment 3}
@@ -55,14 +56,20 @@
 	Since $\forall x \in \reals, \exists y \in \reals: \sqrt{y}=x \implies x > 0$,
 	we have $\bsn > 0 \implies \bsn + 3 > 3 \implies \frac{1}{\bsn + 3} < \frac{1}{3}
 	\implies \frac{\overn{1}}{\bsn + 3} < \frac{\overn{1}}{3}$.
+
+	Consider the quantity $\overn{-(-1)^n}$.
 	Any natural number is either even or odd, i.e.
 	$\forall n \in \nats, \exists k \in \nats: (n = 2k) \lor (n = 2k-1)$.
-	Then, $n = 2k \implies \movern = \overn{1} \land n = 2k-1 \implies \movern = \overn{-1}$,
-	so we have $\forall n \in \nats, \movern \le \overn{1}$.
-	Thus, $\frac{\movern}{\bsn + 3} \le \frac{\overn{1}}{\bsn + 3}$.
-	\textbf{NO THIS IS FALSE}
-	Since $x = |-x|$, we have $\frac{\movern}{\bsn + 3} = |\frac{-\movern}{\bsn + 3}|$,
-	and then $|\frac{-\movern}{\bsn + 3}| = |\frac{9-\movern-9}{\bsn + 3}| =
+	Then, $n = 2k \implies \overn{-(-1)^n} = \overn{-1}$
+	and $\overn{-1} \le \overn{-(-1)^n} \le \overn{1}$ holds.
+	Alternatively, $n = 2k-1 \implies \overn{-(-1)^n} = \overn{1}$
+	and $\overn{-1} \le \overn{-(-1)^n} \le \overn{1}$ holds,
+	so we have $\forall n \in \nats, \overn{-1} \le \overn{-(-1)^n} \le \overn{1}$.
+	Thus, $\frac{\overn{-1}}{\bsn + 3} \le \frac{\overn{-(-1)^n}}{\bsn + 3} \le \frac{\overn{1}}{\bsn + 3}$,
+	and this is true if and only if
+	$|\frac{\overn{-(-1)^n}}{\bsn + 3}| \le \frac{\overn{1}}{\bsn + 3}$.
+
+	Then, $|\frac{-\movern}{\bsn + 3}| = |\frac{9-\movern-9}{\bsn + 3}| =
 	|\frac{(\bsn)^2-3^2}{\bsn + 3}| = |\bsn - 3|$.
 	By transitivity, $|\bsn - 3| \le \frac{\overn{1}}{\bsn + 3} < \frac{1}{3n} < \eps
 	\implies |\bsn - 3| < \eps$.
@@ -102,6 +109,64 @@
 	|\frac{n}{\csn} - \frac{1}{2}| < \eps$
 	which is exactly the definition that
 	$\lim \frac{n}{\csn} = \frac{1}{2}$.
+\end{proof}
+
+\textbf{Problem 4:}
+
+\begin{clm} \label{c4}
+	$\lim(\dsn - n) = \frac{5}{2}$
+\end{clm}
+
+\begin{proof}
+	Let $\eps \in \reals: \eps > 0$.
+	By the Archimedian property of \reals,
+	$\exists n \in \nats: n > \frac{2\eps + 5}{2\eps - 5}$.
+	This inequality implies $\frac{1}{n} < \frac{2\eps - 5}{2\eps + 5}$,
+	so $\frac{n}{n^2 + 5n} < \frac{n}{n^2} = \overn{1} < \frac{2\eps - 5}{2\eps + 5}$.
+
+	Since $n > 0 \land n^2 +5n > 0$, we have $\frac{n}{n^2 + 5n} > 0$,
+	therefore $\frac{-n}{n^2 + 5n} < 0$, and of course $\frac{-n}{\dsn} < 0$
+	since $\forall x \in \reals, (\exists y \in \reals: x = \sqrt{y}) \implies x > 0$,
+	so $\frac{-n}{\dsn} < \frac{2\eps - 5}{2\eps + 5}$.
+	Thus, $-n(2\eps + 5) = -2\eps n -5n < \dsn(2\eps - 5) = 2\eps\dsn - 5\dsn
+	\implies -5n + 5\dsn = -5(n - \dsn) < 2\eps\dsn + 2\eps n = 2\eps(n + \dsn)
+	\implies \frac{-5(n - \dsn)}{2(n + \dsn)} < \eps$.
+	
+	Assume that $n \geq \dsn$.
+	Then, $n^2 \geq n^2 + 5n \implies 0 \geq 5n \implies 0 \geq n$,
+	but $n > 0$ since $n \in \nats$, which is a contradiction,
+	therefore $n < \dsn$, so $n - \dsn < 0$ and therefore $\frac{5(n - \dsn)}{2(n + \dsn)} < 0$.
+	Thus  $|\frac{5(n - \dsn)}{2(n + \dsn)}| = \frac{-5(n - \dsn)}{2(n + \dsn)} < \eps$.
+
+	Then we see that $|\frac{5(n - \dsn)}{2(n + \dsn)}| = |\frac{2(5n) - 5(n + \dsn)}{2(n + \dsn)}|
+	= |\frac{5n}{\dsn + n} - \frac{5}{2}| = |\frac{(\dsn)^2 - n^2}{\dsn + n} - \frac{5}{2}|
+	= |\dsn - n - \frac{5}{2}| < \eps$.
+	Thus we have demonstated that $\forall \eps \in \reals : \eps > 0, \exists \neps \in \nats:
+	\forall n \in \nats: n > \neps,
+	|\dsn - n - \frac{5}{2}| < \eps$,
+	which is exactly the definition that
+	$\lim(\dsn - n) = \frac{5}{2}$.
+\end{proof}
+
+\textbf{Problem 5:}
+
+\begin{clm} \label{clm}
+	$\lim(3 + 2(-1)^n) \neq 5$
+\end{clm}
+
+\begin{proof}
+	Let $\eps = 1$, let $n \in \nats$, and let $m = 2n + 1$.
+	Then, $|3 - 2(-1)^m - 5| = |3 - 2(-1)^2(-1) - 5| =
+	|-4| = 4 \geq 1 = \eps$.
+	Thus we have demonstrated that $\exists \eps \in \reals : \eps > 0 : \forall N_\eps \in \nats,
+	\exists n \in \nats: n > N_\eps: |3 - 2(-1)^n - 5| \geq \eps
+	\iff \neg(\forall \eps \in \reals : \eps > 0, \exists \neps \in \nats:
+	\forall n \in \nats: n > \neps, | 3 -2(-1)^n - 5| < \eps)$,
+	which is the negation of
+	$\lim(3 + 2(-1)^n) = 5$,
+	and
+	$\neg(\lim(3 + 2(-1)^n) = 5) \iff \lim(3 + 2(-1)^n) \neq 5$.
+
 \end{proof}
 
 \end{document}
