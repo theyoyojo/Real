@@ -1,0 +1,121 @@
+\documentclass{article}
+
+\usepackage{amsmath, amssymb, amsthm}
+\newcommand{\reals}{\ensuremath{\mathbb{R}}}
+\newcommand{\nats}{\ensuremath{\mathbb{N}}}
+\newcommand{\eps}{\ensuremath{\epsilon}}
+\newcommand{\neps}{\ensuremath{N_\epsilon}}
+\newcommand{\overn}[1]{\ensuremath{\frac{#1}{n}}}
+\newcommand{\movern}{\overn{(-1)^n}}
+\newcommand{\bsn}{\sqrt{9-\movern}}
+\newcommand{\csn}{\sqrt{4n^2+9n+1}}
+\newcommand{\dsn}{\sqrt{n^2 + 5n}}
+\newtheorem{clm}{Claim}
+
+\title{Real Analysis Assignment 4}
+\author{Joel Savitz}
+
+\begin{document}
+
+\maketitle
+
+\textbf{Problem 1:}
+
+\begin{clm}
+	$\lim x_n = a > 0 \implies \lim \sqrt{x_n} = \sqrt{a}$
+\end{clm}
+
+% note: x_n must be greater than 0 forall n, right?
+\begin{proof}
+	Assume that $\lim x_n = 0 > 0$.
+	We have by the definition of $\lim x_n = a$
+	that $\forall \eps \in \reals : \eps > 0, \exists N_\eps \in \nats: \forall n > N_\eps, | x_n - a | < \eps$.
+	Let $\eps > 0$.
+	Then, there exists an $N_{\sqrt{a}\eps}$
+	such that $\forall n \in \nats : n > N_{\sqrt{a}\eps}, | x_n - a | < \eps \sqrt{a}$.
+	Thus, $\frac{|x_n - a|}{\sqrt{a}} < \eps$.
+	Since $\sqrt{x_n} > 0$, we have 
+	$\frac{|x_n - a|}{\sqrt{x_n} + \sqrt{a}} < \frac{|x_n - a|}{\sqrt{a}}$.
+	Then, since $\forall x > 0$ we have $|x| = x$,
+	and since $\forall a,b \in \reals, |a||b| = |ab|$,
+	we see that 
+	$\frac{|x_n - a|}{\sqrt{x_n} + \sqrt{a}} = |\frac{x_n - a}{\sqrt{x_n} + \sqrt{a}}|$,
+	and since $\forall a, b \in \reals, a - b = \frac{a^2 - b^2}{a + b}$,
+	we have $|\frac{x_n - a}{\sqrt{x_n} + \sqrt{a}}| = | \sqrt{x_n} - \sqrt{a} |$.
+	Finally, since $| \sqrt{x_n} - \sqrt{a} | < \frac{|x_n - a|}{\sqrt{a}}	< \eps$,
+	we have by transitivity that $| \sqrt{x_n} - \sqrt{a} | < \eps$.
+	Thus we have demonstrated that
+	$\forall \eps \in \reals: \eps > 0, \exists N_\eps \in \nats: \forall n \in \nats: n > N_\eps,
+	| \sqrt{x_n} - \sqrt{a} | < \eps$,
+	which is exactly the definition that $\lim \sqrt{x_n} = \sqrt{a}$.
+	Therefore, we have the implication $\lim x_n = a > 0 \implies \lim \sqrt{x_n} = \sqrt{a}$
+\end{proof}
+
+\textbf{Problem 2:}
+
+\begin{clm}
+	$\lim x_n = 2 \implies \lim \frac{1}{x_n} = \frac{1}{2}$.
+\end{clm}
+
+\begin{proof}
+	Assume $\lim x_n = 2$.
+	We have by the definition of $\lim x_n = 2$
+	that $\forall \eps \in \reals : \eps > 0, \exists N_\eps \in \nats: \forall n > N_\eps,
+	|x_n - 2| < \eps$.
+	Let $\eps = 1$.
+	Then, $\exists N_1 \in \nats: \forall n \in \nats: n < N_1, |x_n - 2| < 1$.
+	By the reverse triangle inequality,
+	$||x_n| - |2|| < | x_n - 2| < 1$,
+	but $||x_n| - |2|| = |2 - |x_n||$,
+	and by transitivity $|2 - |x_n|| < 1 \iff -1 < 2 - |x_n| < 1 \implies 1 < |x_n|$.
+	Also note that $1 < |x_n| \implies 1 > \frac{1}{|x_n|}$.
+	Let $\eps > 0$ and let $K_\eps = \max(N_1, N_{2\eps})$.
+	Then, $|\frac{1}{x_n} - \frac{1}{2}| = \frac{|x_n - 2|}{2|x_n|}$,
+	and since $K_\eps \geq N_1$, we have for all $n > K_\eps$
+	that $\frac{|x_n - 2|}{2|x_n|} < \frac{|x_n - 2|}{2}$,
+	and since $K_\eps \geq N_{2\eps}$, we have for all $n > K_\eps$
+	that $\frac{|x_n - 2|}{2} < \frac{2\eps}{2} = \eps$,
+	and by transitivity $|\frac{1}{x_n} - \frac{1}{2}| < \frac{|x_n - 2|}{2} < \eps
+	\implies |\frac{1}{x_n} - \frac{1}{2}| < \eps$.
+	Thus we have demonstrated that
+	$\forall \eps \in \reals: \eps > 0, \exists N_\eps \in \nats: \forall n \in \nats: n > N_\eps,
+	|\frac{1}{x_n} - \frac{1}{2}| < \eps$.
+	which is exactly the definition that $\lim\frac{1}{x_n} = \frac{1}{2}$.
+	Therefore, we have the implication $\lim x_n = 2 \implies \lim \frac{1}{x_n} = \frac{1}{2}$.
+\end{proof}
+
+\textbf{Problem 3:}
+
+\begin{clm}
+	$\lim x_n = - 1 \implies \lim |5x_n + 3| = 2$
+\end{clm}
+
+\begin{proof}
+	Assume that $\lim x_n = - 1$.
+	We have by the definition of $\lim x_n = -1$
+	that $\forall \eps \in \reals : \eps > 0, \exists N_\eps \in \nats: \forall n > N_\eps,
+	| x_n + 1 | < \eps$.
+	Then, there exists an $N_{\frac{\eps}{5}}$
+	such that $\forall n \in \nats : n > N_{\frac{\eps}{5}}, | x_n + 1 | < \frac{\eps}{5}$.
+	Thus, $|5x_n + 5| + |-2| - |2| = |5x_n + 5| = |5||x_n + 1| = 5|x_n + 1| < \eps$.
+	By the triangle inequality,
+	$|5x_n + 5 + (-2)| - |2| \le |5x_n + 5| + |-2| - |2| < \eps$,
+	and by the reverse triangle inequality,
+	$||5x_n + 3| - 2| = ||5x_n + 3| - |2|| \le |5x_n + 5 + (-2)| - |2|$,
+	so by transitivity,
+	$||5x_n + 3| - 2| < \eps$.
+	Thus we have demonstrated that
+	$\forall \eps \in \reals: \eps > 0, \exists N_\eps \in \nats: \forall n \in \nats: n > N_\eps,
+	||5x_n + 3| - 2| < \eps$,
+	which is exactly the definition that $\lim|5x_n + 3| = 2$.
+	Therefore, we have the implication that 
+	$\lim x_n = - 1 \implies \lim |5x_n + 3| = 2$
+\end{proof}
+
+It is not the case that $\lim |5x_n + 3| = 2 \implies \lim x_n = -1$.
+
+As a counterexample, consider the sequence $x_n = \frac{-1}{5}$.
+
+Then, $\lim |5x_n + 3| = \lim |5 \cdot \frac{-1}{5} + 3| = \lim|-1 + 3| = \lim|2| = \lim 2 = 2$.
+
+\end{document}
