@@ -45,7 +45,8 @@
 	Finally, since $| \sqrt{x_n} - \sqrt{a} | < \frac{|x_n - a|}{\sqrt{a}}	< \eps$,
 	we have by transitivity that $| \sqrt{x_n} - \sqrt{a} | < \eps$.
 	Thus we have demonstrated that
-	$\forall \eps \in \reals: \eps > 0, \exists N_\eps \in \nats: \forall n \in \nats: n > N_\eps,
+	for $K_\eps = N_{\sqrt{a}\eps}$,
+	$\forall \eps \in \reals: \eps > 0, \exists K_\eps \in \nats: \forall n \in \nats: n > K_\eps,
 	| \sqrt{x_n} - \sqrt{a} | < \eps$,
 	which is exactly the definition that $\lim \sqrt{x_n} = \sqrt{a}$.
 	Therefore, we have the implication $\lim x_n = a > 0 \implies \lim \sqrt{x_n} = \sqrt{a}$
@@ -69,7 +70,7 @@
 	but $||x_n| - |2|| = |2 - |x_n||$,
 	and by transitivity $|2 - |x_n|| < 1 \iff -1 < 2 - |x_n| < 1 \implies 1 < |x_n|$.
 	Also note that $1 < |x_n| \implies 1 > \frac{1}{|x_n|}$.
-	Let $\eps > 0$ and let $K_\eps = \max(N_1, N_{2\eps})$.
+	Let $\eps > 0$ and let $K_\eps = \max(\{N_1, N_{2\eps}\})$.
 	Then, $|\frac{1}{x_n} - \frac{1}{2}| = \frac{|x_n - 2|}{2|x_n|}$,
 	and since $K_\eps \geq N_1$, we have for all $n > K_\eps$
 	that $\frac{|x_n - 2|}{2|x_n|} < \frac{|x_n - 2|}{2}$,
@@ -78,7 +79,8 @@
 	and by transitivity $|\frac{1}{x_n} - \frac{1}{2}| < \frac{|x_n - 2|}{2} < \eps
 	\implies |\frac{1}{x_n} - \frac{1}{2}| < \eps$.
 	Thus we have demonstrated that
-	$\forall \eps \in \reals: \eps > 0, \exists N_\eps \in \nats: \forall n \in \nats: n > N_\eps,
+	for $K_\eps = \max(\{N_{2\eps}, N_1\})$,
+	$\forall \eps \in \reals: \eps > 0, \exists K_\eps \in \nats: \forall n \in \nats: n > K_\eps,
 	|\frac{1}{x_n} - \frac{1}{2}| < \eps$.
 	which is exactly the definition that $\lim\frac{1}{x_n} = \frac{1}{2}$.
 	Therefore, we have the implication $\lim x_n = 2 \implies \lim \frac{1}{x_n} = \frac{1}{2}$.
@@ -105,7 +107,8 @@
 	so by transitivity,
 	$||5x_n + 3| - 2| < \eps$.
 	Thus we have demonstrated that
-	$\forall \eps \in \reals: \eps > 0, \exists N_\eps \in \nats: \forall n \in \nats: n > N_\eps,
+	for $K_\eps = N_{\frac{\eps}{5}}$,
+	$\forall \eps \in \reals: \eps > 0, \exists K_\eps \in \nats: \forall n \in \nats: n > K_\eps,
 	||5x_n + 3| - 2| < \eps$,
 	which is exactly the definition that $\lim|5x_n + 3| = 2$.
 	Therefore, we have the implication that 
