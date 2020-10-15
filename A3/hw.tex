@@ -27,15 +27,16 @@
 
 \begin{proof}
 	Let $\eps \in \reals : \eps > 0$.
-	Then, since \reals\ is closed under the field operations,
-	we have $\frac{1}{8}(\frac{11}{\eps} - 14) \in \reals$.
-	Since $(1 \in \reals \land 1 > 0) \land \frac{1}{8}(\frac{11}{\eps} - 14) \in \reals$,
-	by the Archimedian property of \reals\,
-	we have $\exists n \in \nats: 1 \cdot n = n > \frac{1}{8}(\frac{11}{\eps} - 14)$.
-	This inequality implies that $8n + 14 > \frac{11}{\eps} \implies \frac{11}{8n+14} < \eps$.
-	Since $\forall x \in \reals: x < 0, |x| = -x$, we have $|\frac{-11}{8n+14}| < \eps$.
-	Therefore, $ |\frac{-11}{8n+14}| = |\frac{12n + 10 - 12n - 21}{8n+14}| = |\frac{2(n+5) - 3(4n+7)}{8n+14}| =
-	|\frac{6n+5}{4n+7} - \frac{3}{2}| < \eps$.
+	By the Archimedian property of \reals\,
+	we have $\exists N_\eps \in \nats: N_\eps > \frac{1}{8}(\frac{11}{\eps} - 14)$.
+	Then, $\forall n > N_\eps, n > \frac{1}{8}(\frac{11}{\eps})$.
+	This inequality implies the following: 
+	\begin{align}
+		\frac{11}{8n+14} < \eps \\
+		\forall x < 0, |x| = -x \implies \frac{11}{8n+14} = |\frac{-11}{8n+14}| < \eps \\
+	|\frac{-11}{8n+14}| = |\frac{12n + 10 - 12n - 21}{8n+14}| = |\frac{2(6n+5) - 3(4n+7)}{8n+14}| \\
+	|\frac{2(6n+5) - 3(4n+7)}{8n+14}| = |\frac{6n+5}{4n+7} - \frac{3}{2}| < \eps
+	\end{align}
 	Thus we have demonstated that $\forall \eps \in \reals : \eps > 0, \exists \neps \in \nats:
 	\forall n \in \nats: n > \neps, |\frac{6n+5}{4n+7} - \frac{3}{2}| < \eps$,
 	which is exactly the definition that
@@ -51,27 +52,33 @@
 \begin{proof}
 	Let $\eps \in \reals: \eps > 0$.
 	By the Archimedian property of \reals,
-	$\exists n \in \nats: n > \frac{1}{3\eps}$.
-	Then, $\frac{1}{3n} = \frac{\overn{1}}{3}< \eps$.
-	Since $\forall x \in \reals, \exists y \in \reals: \sqrt{y}=x \implies x > 0$,
-	we have $\bsn > 0 \implies \bsn + 3 > 3 \implies \frac{1}{\bsn + 3} < \frac{1}{3}
-	\implies \frac{\overn{1}}{\bsn + 3} < \frac{\overn{1}}{3}$.
+	$\exists N_\eps \in \nats: N_\eps > \frac{1}{3\eps}$,
+	so $\forall n > N_\eps, n > \frac{1}{3\eps}$.
 
-	Consider the quantity $\overn{-(-1)^n}$.
-	Any natural number is either even or odd, i.e.
-	$\forall n \in \nats, \exists k \in \nats: (n = 2k) \lor (n = 2k-1)$.
-	Then, $n = 2k \implies \overn{-(-1)^n} = \overn{-1}$
-	and $\overn{-1} \le \overn{-(-1)^n} \le \overn{1}$ holds.
-	Alternatively, $n = 2k-1 \implies \overn{-(-1)^n} = \overn{1}$
-	and $\overn{-1} \le \overn{-(-1)^n} \le \overn{1}$ holds,
-	so we have $\forall n \in \nats, \overn{-1} \le \overn{-(-1)^n} \le \overn{1}$.
-	Thus, $\frac{\overn{-1}}{\bsn + 3} \le \frac{\overn{-(-1)^n}}{\bsn + 3} \le \frac{\overn{1}}{\bsn + 3}$,
-	and this is true if and only if
-	$|\frac{\overn{-(-1)^n}}{\bsn + 3}| \le \frac{\overn{1}}{\bsn + 3}$.
+	Assume for contradiction that
+	$\frac{(-1)^n}{n} > 1$.
+	Then, 
+	$(\frac{(-1)^n}{n})^2 = \frac{1}{n^2} > 1$,
+	so $n^2 < 1$.
+	Since $n > 0$, this implies that $n < 1$,
+	but of course $n \geq 1$,
+	which is a contradiciton,
+	therefore
+	$\frac{(-1)^n}{n} < 1 < 9$,
+	so $9 - \frac{(-1)^n}{n} > 0$,
+	and $\bsn$ exists.
 
-	Then, $|\frac{-\movern}{\bsn + 3}| = |\frac{9-\movern-9}{\bsn + 3}| =
-	|\frac{(\bsn)^2-3^2}{\bsn + 3}| = |\bsn - 3|$.
-	By transitivity, $|\bsn - 3| \le \frac{\overn{1}}{\bsn + 3} < \frac{1}{3n} < \eps
+	Then, since $\bsn > 0$, we have:
+
+	\begin{align}
+		\bsn + 3 > 3 \\
+		\frac{1}{\bsn + 3} < \frac{1}{3} \\
+	\frac{\overn{1}}{\bsn + 3} = | \frac{\overn{-(-1)^n}}{\bsn + 3}| < \frac 1{3n} \\
+	|\frac{-\movern}{\bsn + 3}| = |\frac{9-\movern-9}{\bsn + 3}| \\
+|\frac{9-\movern-9}{\bsn + 3}| = |\frac{(\bsn)^2-3^2}{\bsn + 3}| = |\bsn - 3|.
+\end{align}
+
+	By transitivity, $|\bsn - 3| < \frac{1}{3n} < \eps
 	\implies |\bsn - 3| < \eps$.
 	Thus we have demonstated that $\forall \eps \in \reals : \eps > 0, \exists \neps \in \nats:
 	\forall n \in \nats: n > \neps,
@@ -89,21 +96,43 @@
 \begin{proof}
 	Let $\eps \in \reals: \eps > 0$.
 	By the Archimedian property of \reals,
-	$\exists n \in \nats: n > \frac{1}{2}(\frac{1}{\eps - \frac{9}{2}})$.
-	Then, $\frac{1}{2n} + \frac{9}{2} = \frac{1}{2n} + \frac{9n}{2n} = \frac{9n+1}{2n}< \eps$.
-	Since $\forall n \in \nats, 1 < 1 + 4n^2 + 9n$, we have $1 < \csn$.
-	Then, $2n + \csn > 2n \implies \frac{1}{2n + \csn} < \frac{1}{2n}
-	\implies \frac{9n+1}{2n + \csn} < \frac{9n+1}{2n} $. 
-	Furthermore, since $\csn > 1 \implies 2\csn > 1$,
-	% fix formatting
-	we have $(2n + \csn)(2\csn) > 2n + \csn \implies \frac{1}{(2n + \csn)(2\csn)} < \frac{1}{2n + \csn}
-	\implies \frac{9n+1}{(2n + \csn)(2\csn)} < \frac{9n+1}{2n + \csn}$.
-	Since $\forall x \in \reals: x > 0, |x| = -x$,
-	we have $\frac{9n+1}{(2n + \csn)(2\csn)} = |\frac{-(9n+1)}{(2n + \csn)(2\csn)}|
-	= |\frac{4n^2 -(4n^2 +9n+1)}{(2n + \csn)(2\csn)}| = |\frac{(2n)^2 - (\csn)^2}{(2n + \csn)(2\csn)}|
-	= |\frac{2n - \csn}{2\csn}| = |\frac{n}{\csn} - \frac{1}{2}|$.
-	Then by transitivity, $|\frac{n}{\csn} - \frac{1}{2}| < \frac{9n+1}{2n + \csn} < \frac{9n+1}{2n} < \eps
-	\implies |\frac{n}{\csn} - \frac{1}{2}| < \eps$
+	$\exists N_\eps: N_\eps > \frac{18}{8\eps}$.
+	Then, $\forall n > N_\eps, n > \frac{18}{8\eps}$.
+	We can then derive the following inequalities and equations:
+	\begin{align}
+		n > \frac{18}{8\eps} \implies \frac{18}{8n} < \eps \\
+	      \frac{ 9n + 9n }{8n^2 + 18n} = \frac{18}{8n + 18} < \frac{18}{8n} \\
+	      \frac{ 9n + 1 }{2(4n^2 + 9n + 1)} =
+	      \frac{ 9n + 1 }{8n^2 + 18n + 2} <
+				\frac{ 9n + 9n }{8n^2 + 18n + 2} <
+				\frac{ 9n + 9n }{8n^2 + 18n} \\
+				\frac{ 9n + 1 }{(\csn)(2\csn)} =
+	      \frac{ 9n + 1 }{2(4n^2 + 9n + 1)} \\
+	      \frac{ (4n^2 + 9n + 1) -4n^2}{(2n + \csn)(2\csn)} <
+				\frac{ 9n + 1 }{(\csn)(2\csn)} \\
+				\frac{ (4n^2 + 9n + 1) -4n^2}{(2n + \csn)(2\csn)} =
+	      \frac{\csn -2n}{(2\csn)} \\
+	      \frac{\csn -2n}{(2\csn)} = \frac{-(2n - \csn)}{2\csn}
+	\end{align}
+
+	Now assume for a contradiction that $\csn \le 2n$.
+	This inequality implies:
+	\begin{align}
+		4n^2 + 9n + 1 \le & 4n^2 \\
+		9n + 1 \le & 0 \\
+		n \le & \frac{-1}{9} < 0
+	\end{align}
+	But $n > 0$ since $n \in \nats$,
+	which is a contradiction,
+	therefore $\csn > 2n \implies 0 > 2n - \csn$,
+	so $|
+	\frac{2n - \csn}{2\csn}
+	| =
+	\frac{-(2n - \csn)}{2\csn}$.
+	Finally,
+	$|\frac{2n - \csn}{2\csn}| = |\frac{n}{\csn} - \frac{1}{2}|$,
+	and by the transitivity of the above order relations,
+	we have $|\frac{n}{\csn} - \frac{1}{2}| < \eps$. 
 	Thus we have demonstated that $\forall \eps \in \reals : \eps > 0, \exists \neps \in \nats:
 	\forall n \in \nats: n > \neps,
 	|\frac{n}{\csn} - \frac{1}{2}| < \eps$
@@ -120,27 +149,37 @@
 \begin{proof}
 	Let $\eps \in \reals: \eps > 0$.
 	By the Archimedian property of \reals,
-	$\exists n \in \nats: n > \frac{2\eps + 5}{2\eps - 5}$.
-	This inequality implies $\frac{1}{n} < \frac{2\eps - 5}{2\eps + 5}$,
-	so $\frac{n}{n^2 + 5n} < \frac{n}{n^2} = \overn{1} < \frac{2\eps - 5}{2\eps + 5}$.
+	$\exists N_\eps \in \nats: N_\eps > \frac{25}{4\eps}$.
+	Then, $\forall n > N_\eps, n > \frac{25}{4\eps}$.
+	We have the following inequalities and equations:
+	\begin{align}
+		n > \frac{25}{4\eps} \implies & \frac{25}{4n} < \eps \\
+		\frac{5}{2} + \sqrt{n^2 + 5n} > 0 \implies &
+		\frac{\frac{25}{4}}{n + \frac{5}{2} + \sqrt{n^2 + 5n}} < \frac{25}{4n} \\
+		   & \frac{\frac{25}{4}}{n + \frac{5}{2} + \sqrt{n^2 + 5n}} =
+	   \frac{(n^2 + 5n) + \frac{25}{4} -(n^2 + 5n)}{n + \frac{5}{2} + \sqrt{n^2 + 5n}} \\
+		(a-b) = \frac{a^2-b^2}{a + b} \implies &
+	   \frac{(n^2 + 5n) + \frac{25}{4} -(n^2 + 5n)}{n + \frac{5}{2} + \sqrt{n^2 + 5n}} =
+	   n + \frac{5}{2} - \sqrt{n^2 + 5n} \\
+		n + \frac{5}{2} - \sqrt{n^2 + 5n} = &
+		- (\sqrt{n^2 + 5n} - (n + \frac{5}{2})
+	\end{align}
 
-	Since $n > 0 \land n^2 +5n > 0$, we have $\frac{n}{n^2 + 5n} > 0$,
-	therefore $\frac{-n}{n^2 + 5n} < 0$, and of course $\frac{-n}{\dsn} < 0$
-	since $\forall x \in \reals, (\exists y \in \reals: x = \sqrt{y}) \implies x > 0$,
-	so $\frac{-n}{\dsn} < \frac{2\eps - 5}{2\eps + 5}$.
-	Thus, $-n(2\eps + 5) = -2\eps n -5n < \dsn(2\eps - 5) = 2\eps\dsn - 5\dsn
-	\implies -5n + 5\dsn = -5(n - \dsn) < 2\eps\dsn + 2\eps n = 2\eps(n + \dsn)
-	\implies \frac{-5(n - \dsn)}{2(n + \dsn)} < \eps$.
-	
-	Assume that $n \geq \dsn$.
-	Then, $n^2 \geq n^2 + 5n \implies 0 \geq 5n \implies 0 \geq n$,
-	but $n > 0$ since $n \in \nats$, which is a contradiction,
-	therefore $n < \dsn$, so $n - \dsn < 0$ and therefore $\frac{5(n - \dsn)}{2(n + \dsn)} < 0$.
-	Thus  $|\frac{5(n - \dsn)}{2(n + \dsn)}| = \frac{-5(n - \dsn)}{2(n + \dsn)} < \eps$.
-
-	Then we see that $|\frac{5(n - \dsn)}{2(n + \dsn)}| = |\frac{2(5n) - 5(n + \dsn)}{2(n + \dsn)}|
-	= |\frac{5n}{\dsn + n} - \frac{5}{2}| = |\frac{(\dsn)^2 - n^2}{\dsn + n} - \frac{5}{2}|
-	= |\dsn - n - \frac{5}{2}| < \eps$.
+	Now, assume for the purpose of contradiction that
+	$n + \frac{5}{2} \le \sqrt{n^2 + 5n}$. Then, we have:
+	\begin{align}
+		n^2 + 5n + \frac{25}{4} \le & n^2 + 5n \\
+		\frac{25}{4} \le & 0
+	\end{align}
+	But of course $\frac{25}{4} > 0$, which is a contradiction.
+	Thus,
+	$n + \frac{5}{2} > \sqrt{n^2 + 5n}$.
+	So $- (\sqrt{n^2 + 5n} - (n + \frac{5}{2}))
+	=|\sqrt{n^2 + 5n} - (n + \frac{5}{2})|
+	=|\sqrt{n^2 + 5n} - n - \frac{5}{2})|$,
+	and by transitivity of the above order relations,
+	we have 
+	$|\sqrt{n^2 + 5n} - n - \frac{5}{2})| < \eps$.
 	Thus we have demonstated that $\forall \eps \in \reals : \eps > 0, \exists \neps \in \nats:
 	\forall n \in \nats: n > \neps,
 	|\dsn - n - \frac{5}{2}| < \eps$,
@@ -155,7 +194,7 @@
 \end{clm}
 
 \begin{proof}
-	Let $\eps = 1$, let $n \in \nats$, and let $m = 2n + 1$.
+	Let $\eps = 1$, let $N \in \nats$, and let $m = 2N + 1$.
 	Then, $|3 - 2(-1)^m - 5| = |3 - 2(-1)^2(-1) - 5| =
 	|-4| = 4 \geq 1 = \eps$.
 	Thus we have demonstrated that $\exists \eps \in \reals : \eps > 0 : \forall N_\eps \in \nats,
