@@ -28,16 +28,17 @@
 \begin{proof}
 	Let $\eps \in \reals : \eps > 0$.
 	By the Archimedian property of \reals\,
-	we have $\exists N_\eps \in \nats: N_\eps > \frac{1}{8}(\frac{11}{\eps} - 14)$.
-	Then, $\forall n > N_\eps, n > \frac{1}{8}(\frac{11}{\eps})$.
+	we have $\exists N_\eps \in \nats: N_\eps > \frac{11}{8\eps}$
+	Then, $\forall n > N_\eps, n > \frac{11}{8\eps}$
 	This inequality implies the following: 
 	\begin{align}
-		\frac{11}{8n+14} < \eps \\
+		n > \frac{11}{8\eps} \implies \frac{11}{8n} < \eps \\
+		\frac{11}{8n+14} < \frac{11}{8n} < \eps \\
 		\forall x < 0, |x| = -x \implies \frac{11}{8n+14} = |\frac{-11}{8n+14}| < \eps \\
 	|\frac{-11}{8n+14}| = |\frac{12n + 10 - 12n - 21}{8n+14}| = |\frac{2(6n+5) - 3(4n+7)}{8n+14}| \\
 	|\frac{2(6n+5) - 3(4n+7)}{8n+14}| = |\frac{6n+5}{4n+7} - \frac{3}{2}| < \eps
 	\end{align}
-	Thus we have demonstated that $\forall \eps \in \reals : \eps > 0, \exists \neps \in \nats:
+	Thus we have demonstrated that $\forall \eps \in \reals : \eps > 0, \exists \neps \in \nats:
 	\forall n \in \nats: n > \neps, |\frac{6n+5}{4n+7} - \frac{3}{2}| < \eps$,
 	which is exactly the definition that
 	$\lim \frac{6n+5}{4n+7} = \frac{3}{2}$.
@@ -162,7 +163,7 @@
 	   \frac{(n^2 + 5n) + \frac{25}{4} -(n^2 + 5n)}{n + \frac{5}{2} + \sqrt{n^2 + 5n}} =
 	   n + \frac{5}{2} - \sqrt{n^2 + 5n} \\
 		n + \frac{5}{2} - \sqrt{n^2 + 5n} = &
-		- (\sqrt{n^2 + 5n} - (n + \frac{5}{2})
+		- (\sqrt{n^2 + 5n} - (n + \frac{5}{2}))
 	\end{align}
 
 	Now, assume for the purpose of contradiction that
@@ -176,10 +177,10 @@
 	$n + \frac{5}{2} > \sqrt{n^2 + 5n}$.
 	So $- (\sqrt{n^2 + 5n} - (n + \frac{5}{2}))
 	=|\sqrt{n^2 + 5n} - (n + \frac{5}{2})|
-	=|\sqrt{n^2 + 5n} - n - \frac{5}{2})|$,
+	=|\sqrt{n^2 + 5n} - n - \frac{5}{2}|$,
 	and by transitivity of the above order relations,
 	we have 
-	$|\sqrt{n^2 + 5n} - n - \frac{5}{2})| < \eps$.
+	$|\sqrt{n^2 + 5n} - n - \frac{5}{2}| < \eps$.
 	Thus we have demonstated that $\forall \eps \in \reals : \eps > 0, \exists \neps \in \nats:
 	\forall n \in \nats: n > \neps,
 	|\dsn - n - \frac{5}{2}| < \eps$,
@@ -197,8 +198,8 @@
 	Let $\eps = 1$, let $N \in \nats$, and let $m = 2N + 1$.
 	Then, $|3 - 2(-1)^m - 5| = |3 - 2(-1)^2(-1) - 5| =
 	|-4| = 4 \geq 1 = \eps$.
-	Thus we have demonstrated that $\exists \eps \in \reals : \eps > 0 : \forall N_\eps \in \nats,
-	\exists n \in \nats: n > N_\eps: |3 - 2(-1)^n - 5| \geq \eps
+	Thus we have demonstrated that $\exists \eps \in \reals : \eps > 0 : \forall N \in \nats,
+	\exists n \in \nats: n > N, |3 - 2(-1)^n - 5| \geq \eps
 	\iff \neg(\forall \eps \in \reals : \eps > 0, \exists \neps \in \nats:
 	\forall n \in \nats: n > \neps, | 3 -2(-1)^n - 5| < \eps)$,
 	which is the negation of
