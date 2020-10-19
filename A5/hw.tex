@@ -25,28 +25,29 @@
 \begin{proof}
 	Let $x_n$ be a monotone decreasing sequence bounded below.
 	Thus by definition, $\forall n, x_{n+1} \le x_n$.
-	Let $M$ be the lower bound of $x_n$, i.e $\forall n, x_n \geq M$.
+	Let $M$ be a lower bound of $x_n$, i.e $\forall n, x_n \geq M$.
 	Since $x_n$ is a sequence of real numbers bounded below,
-	by the completeness of the reals we have that there exists
-	a greatest lower bound, an infimum, of the set $\{ x_n : n \in \nats \}$.
-	Let $a = \inf\{x_n : n \in \nats \}$.
+	by the greatest lower bound property of the reals we have that there exists
+	a greatest lower bound, an infimum, of the set $x_n$.
+	Let $a = \inf x_n$.
 	Let $\eps > 0$.
 	Then, since $a$ is the greatest lower bound of $x_n$,
-	there exists some $N$ such that $x_N < a + \eps$.
+	any $a + \eps$ is not a lower bound, so
+	there exists some $N_\eps$ such that $x_{N_\eps} < a + \eps$.
 	Then, since $\forall n, x_{n+1} \le x_n$,
-	we must have that $\forall n > N, x_n \le x_N$,
+	we must have that $\forall n > N_\eps, x_n \le x_{N_\eps}$,
 	and since $a$ is a lower bound of $x_n$,
 	we have $\forall n, a \le x_n$, and since $\eps > 0$,
 	we of course have $a - \eps < a$.
 	Putting this all together,
-	we have that $\forall n > N, a - \eps < a \le x_n \le x_N < a + \eps$,
-	thus by transitivity, $\forall n > N, a - \eps < x_n < a + \eps$,
+	we have that $\forall n > N_\eps, a - \eps < a \le x_n \le x_{N_\eps} < a + \eps$,
+	thus by transitivity, $\forall n > N_\eps, a - \eps < x_n < a + \eps$,
 	therefore $-\eps < x_n - a < \eps \iff | x_n - a | < \eps$.
 	We have demonstrated that
-	$\forall \eps > 0, \exists N: \forall n > N, | x_n - a | < \eps$,
+	$\forall \eps > 0, \exists N_\eps: \forall n > N_\eps, | x_n - a | < \eps$,
 	which is exactly the definition that $\lim x_n = a$,
 	therefore the limit of $x_n$ exists,
-	and every monotone decreasing bounded belows sequence has a limit.
+	and every monotone decreasing bounded below sequence has a limit.
 \end{proof}
 
 \textbf{Problem 2:}
@@ -65,7 +66,7 @@
 		t + \frac{1}{t} & \geq 2
 	\end{align}
 	Thus $\forall t \geq 0, t + \frac{1}{t} \geq 2$.
-	Knowing this, we can determine a bound for $a_{n+1}$ as follows:
+	Knowing this, we can determine a lower bound for $a_{n+1}$ as follows:
 	\begin{align}
 		a_{n+1} = & \frac{a_n^2 + 1}{2a_n} \\
 		= & a_n \frac{a_n + \frac{1}{a_n}}{2a_n} \\
@@ -76,7 +77,7 @@
 	Since $a_1 \geq 1 \land a_{n+1} \geq 1$,
 	we have $\forall n, a_n \geq 1$,
 	therefore $1$ is a lower bound of $a_n$
-	and $a_n$ is bounded.
+	and $a_n$ is bounded below.
 	Since $a_2 = \frac{a_1^2 + 1}{2a_1} = \frac{2^2 + 1}{2 \cdot 2} = \frac{5}{4}$,
 	we see that $a_2 \le a_1$.
 	Then, since $\forall n, a_n \geq 1 \implies \forall n, a_n^2 \geq 1$:
@@ -88,7 +89,7 @@
 	\end{align}
 	Therefore, $a_n$ is monotone decreasing.
 	Since $a_n$ is bounded below and monotone decreasing,
-	By the monotone conversion theorem,
+	we have by the monotone convergence theorem that
 	the limit of $a_n$ exists.
 \end{proof}
 
@@ -105,7 +106,7 @@ so we can compute as follows:
 	a = & \frac{a^2 + 1}{2a} \\
 	2a^2 = & a^2 + 1 \\
 	a^2 = & 1 \\
-	\implies & a \in \{ -1, 1\}
+	\implies & a = \pm 1
 \end{align}
 
 Suppose, for a contradiction, that $\lim a_n = -1$.
@@ -123,10 +124,10 @@ and it must be the case that $\lim a_n = 1$.
 \end{clm}
 
 \begin{proof}
-	Define the neighborhood $N = (\frac{-1}{2}, \frac{1}{2})$.
-	Note that any $n$ is either even or odd,
-	and if $n$ is even, then $(-1)^n = 1$,
-	and if $n$ is odd, then $(-1)^n = -1$.
+	Define the neighborhood $B = (\frac{-1}{2}, \frac{1}{2})$.
+	Note that any natural $n$ is either even or odd.
+	If $n$ is even, then $(-1)^n = 1$,
+	but if $n$ is odd, then $(-1)^n = -1$.
 	Now let $n \in \nats$.
 	$\forall n \in \nats, n > 0$ implies the following:
 	\begin{align}
@@ -138,24 +139,25 @@ and it must be the case that $\lim a_n = 1$.
 	\end{align}
 	If $n$ is odd, then then we have
 	$(-1)^n - \frac{2}{n} < -1$.
-	Thus for all odd $n$ we have  $x_n \not\in N$.
+	Thus for all odd $n$ we have  $x_n \not\in B$.
 	Now let $n \geq 4$ and note the following:
 	\begin{align}
 		& n \geq 4 \\
 		\implies & -n \le -4 \\
 		\implies & n \le 2n-4 \\
-		\implies & 1 \le 2\frac{n-2}{n} \\
+		\implies & 1 \le \frac{2(n-2)}{n} \\
 		\implies & \frac{1}{2} \le \frac{n-2}{n} \\
 		\implies & \frac{1}{2} \le 1 - \frac{2}{n}
 	\end{align}
 	If $n$ is even, then we have 
 	$(-1)^n - \frac{2}{n} \geq \frac{1}{2}$,
-	thus for any even $n \geq 4$, we have $x_n \not\in N$.
-	Since $x_n \not\in N$ for any odd $n$,
+	thus for any even $n \geq 4$, we have $x_n \not\in B$.
+	Since $x_n \not\in B$ for any odd $n$,
 	we must also have $x_n \not\in N$ for any odd $n > 4$,
 	therefore $\forall n \geq 4, x_n \not\in (0- \frac{1}{2}, 0 + \frac{1}{2})$,
-	and this demonstates that infinitely many $x_n$ fall outside a neighborhood of $0$,
-	so we conclude that finitely many $x_n$ are in $N$.
+	and this demonstates that $\forall n\geq 4, x_n$ falls outside of some neighborhood of $0$,
+	in particular $B = (\frac{-1}{2}, \frac{1}{2})$,
+	so we conclude that finitely many $x_n$ are in $B$.
 	This is true if and only if $0$
 	is not a subsequential limit of $x_n$.
 \end{proof}
