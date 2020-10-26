@@ -45,7 +45,7 @@
 	we have by the monotone convergence theorem that $\lim y_k$ exists,
 	and it is equal to $\sup y_k$
 	Let $A = \lim y_k$.
-	Since $y_k$ has a limit $A$
+	Since $y_k$ has a limit $A$,
 	every subsequence of $y_k$ has the same limit $A$.
 
 	Now, pick some $n_1 \in \nats$.
@@ -59,7 +59,7 @@
 	we have $y_{n_2} = \inf \{ x_{n_2}, x_{n_2 + 1}, x_{n_2 + 2}, ...\}$,
 	and since $y_{n_2}$ is the greatest lower bound of the set,
 	we have that $y_{n_2} + \frac{1}{2}$ is not a lower bound of the set,
-	thus $\exists n_2 > n_2, y_{n_2} \le x_{n_3} < y_{n_2} + \frac{1}{2}$.
+	thus $\exists n_3 > n_2, y_{n_2} \le x_{n_3} < y_{n_2} + \frac{1}{2}$.
 	We can continue this indefinitely,
 	such that for any $n_{k - 1}$,
 	we have that $y_{n_{k - 1}} = \inf \{ x_{n_k}, x_{n_k + 1}, x_{n_k + 2}, ... \}$,
@@ -69,7 +69,7 @@
 	\begin{align}
 		\lim (y_{n_{k - 1}}) \le & \lim x_{n_k} < & \lim (y_{n_{k - 1}} + \frac{1}{k - 1}) \\
 		\lim (y_{n_{k - 1}}) \le & \lim x_{n_k} < & \lim (y_{n_{k - 1}}) + \lim(\frac{1}{k - 1}) \\
-		A \le & \lim x_{n_k} < & A + 0 \\
+		A \le & \lim x_{n_k} \le & A + 0 \\
 		\implies & \lim x_{n_k} = A
 	\end{align}
 	Thus $A$ is a subsequential limit of $x_n$.
@@ -114,9 +114,9 @@
 	Let $\eps > 0$.
 	Thus we have the follwing:
 	\begin{align}
-	\exists N_{\frac{\eps}{2|B|}}, \forall n >  \frac{\eps}{2|B|}, m > \frac{\eps}{2|B|},
+	\exists N_{\frac{\eps}{2|B|}}, \forall n >  N_\frac{\eps}{2|B|}, m > N_\frac{\eps}{2|B|},
 	|a_n - a_m| < \frac{\eps}{2|B|} \\
-	\exists M_{\frac{\eps}{2|A|}}, \forall n >  \frac{\eps}{2|A|}, m > \frac{\eps}{2|A|},
+	\exists M_{\frac{\eps}{2|A|}}, \forall n >  M_\frac{\eps}{2|A|}, m > M_\frac{\eps}{2|A|},
 	|b_n - b_m| < \frac{\eps}{2|A|}
 	\end{align}
 	Let $K_\eps = \max(N_{\frac{\eps}{2|B|}}, M_{\frac{\eps}{2|A|}})$.
@@ -195,10 +195,11 @@ Define a sequence $x_n = \sqrt{n}$.
 	Define $n = 4(N + 1)^2$ and $m = (N + 1)^2$.
 	We see that:
 	\begin{align}
-		|x_n - x_m| = | \sqrt{n} - \sqrt{n}| = 	 &|\sqrt{4(N + 1)^2} - \sqrt{(N + 1)^2}| \\
-							 & | 2(N + 1) - (N + 1)| \\
-							 & | 2N + 2 - N - 1 | \\
-							 & | N + 1 |
+		|x_n - x_m| = | \sqrt{n} - \sqrt{m}| = 	 &|\sqrt{4(N + 1)^2} - \sqrt{(N + 1)^2}| \\
+							=& | 2(N + 1) - (N + 1)| \\
+							=& | 2N + 2 - N - 1 | \\
+							=& | N + 1 | \\
+							=&  N + 1
 	\end{align}
 	Since $N \geq 1$, we have $N + 1 \geq 1 + 1 = 2 \geq 1 = \eps$.
 	Thus we have demonstrated that
