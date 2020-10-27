@@ -1,0 +1,135 @@
+\documentclass{article}
+
+\usepackage{amsmath, amssymb, amsthm}
+\newcommand{\reals}{\ensuremath{\mathbb{R}}}
+\newcommand{\nats}{\ensuremath{\mathbb{N}}}
+\newcommand{\eps}{\ensuremath{\epsilon}}
+\newtheorem{clm}{Claim}
+
+\title{Real Analysis Assignment 7}
+\author{Joel Savitz}
+
+\begin{document}
+
+\maketitle
+
+\textbf{Problem 1:}
+
+Define $x_n = 1 + \frac{1}{\sqrt{2}} + \frac{1}{\sqrt{3}} + ... \frac{1}{\sqrt{n}} = \sum_{j=1}^{n} \frac{1}{\sqrt{j}}$.
+
+\begin{clm}
+	$x_n$ is not a Cauchy sequence.
+\end{clm}
+
+\begin{proof}
+	Let $\eps = \frac{3}{2}$ and let $N \in \nats$.
+	Suppose $m > N$ and $n = 4m > m$.
+	Then, we see that:
+	\begin{align}
+		|x_n - x_m| = & |\sum_{j=1}^{n} \frac{1}{\sqrt{j}} - \sum_{j=1}^{m}\frac{1}{\sqrt{j}}| \\
+			    = & |\sum_{j=1}^{4m} \frac{1}{\sqrt{j}} - \sum_{j=1}^{m}\frac{1}{\sqrt{j}}| \\
+		\sum_{j=m+1}^{4m} \frac{1}{\sqrt{j}} = & |\sum_{j=m+1}^{4m} \frac{1}{\sqrt{j}}| \textrm{ (positive terms) } \\ 
+		\sum_{j=m+1}^{4m} \frac{1}{\sqrt{j}} \geq & \sum_{j=m+1}^{4m} \frac{1}{\sqrt{4m}}
+		= \frac{3m}{2\sqrt{m}} = \frac{3\sqrt{m}}{2} \\
+		m > N \geq 1 \implies \sqrt{m} > 1 \implies & \frac{3\sqrt{m}}{2} \geq \frac{3}{2}
+	\end{align}
+	Thus,
+	$\exists \eps > 0, \forall N, \exists n > m > N, |x_n - x_m| \geq \eps$,
+	which is exactly the definition that $x_n$ is not a Cauchy sequence.
+\end{proof}
+
+\textbf{Problem 2(a):}
+
+\begin{clm}
+	$\lim a_n = -\infty \implies \lim \frac{1}{a_n} = 0$.
+\end{clm}
+
+\begin{proof}
+	Since $\lim a_n = -\infty$,
+	we have by definition
+	that $\forall \beta < 0, \exists N_\beta, \forall n > N_\beta, a_n < 0$.
+	let $\beta < 0$. Then, $\forall n > N_\beta$, we have $a_n < \beta$.
+	Since $\beta < 0$, we have:
+	\begin{align}
+		a_n < \beta < 0 \\
+		-a_n > -\beta > 0 \\
+		\frac{-1}{\beta} > \frac{-1}{a_n} > 0 \\
+		\frac{-1}{\beta} > |\frac{1}{a_n}| > 0
+	\end{align}
+	We see that $M_\eps = N_\frac{-1}{\beta}$ will work.
+	Thus, let $\eps > 0$,
+	and let $\eps  = \frac{-1}{\beta}$.
+	This works since $\eps > 0 \implies \frac{-1}{\beta} < 0$,
+	then, $\forall n > M_\eps$,
+	we have by the above order relations,
+	that $|\frac{1}{a_n}| < \frac{-1}{\beta} = \frac{-1}{-1/\eps} = \eps$,
+	therefore $\forall \eps > 0,
+	\exists M_\eps,
+	\forall n > M_\eps,
+	|\frac{1}{a_n}| < \eps$,
+	which is exactly the definition
+	that $\lim \frac{1}{a_n} = 0$.
+\end{proof}
+
+\textbf{Problem 2(b):}
+
+\begin{clm}
+	$(\lim a_n = 0 \land a_n < 0) \implies \lim \frac{1}{a_n} = -\infty$
+\end{clm}
+
+\begin{proof}
+	Since $\lim a_n = 0$,
+	we have by definition that
+	$\forall \eps > 0,
+	\exists N_\eps,
+	\forall n > N_\eps,
+	|a_n| < \eps$.
+	Let $\eps > 0$.
+	Then for some $N_\eps$,
+	we have $\forall n > N_\eps$,
+	that $|a_n| < \eps$,
+	which is definitionally equivalent
+	to $-\eps < a_n < \eps$,
+	and since by assumption $a_n < 0$,
+	we have $-\eps < a_n < 0$,
+	therefore $\frac{1}{a_n} < \frac{-1}{\eps} < 0$,
+	so a value of $M_\beta = N_\frac{-1}{\eps}$ will work.
+	Let $\beta < 0$
+	and let $\eps = \frac{-1}{\beta} > 0$.
+	$\forall n > M_\eps$,
+	we have $\frac{1}{a_n} < \frac{-1}{\eps} = \frac{-1}{-1/\beta} = \beta$.
+	Then,
+	$\forall \beta < 0,
+	\exists M_\beta,
+	\forall n > M_\beta,
+	\frac{1}{a_n} < \beta$,
+	and this is exactly the definition that
+	$\lim \frac{1}{a_n} = -\infty$.
+\end{proof}
+
+\textbf{Problem 3:}
+
+\begin{clm}
+	If $\lim x_n \neq \infty$,
+	then there exists an infinite subsequence of $x_n$
+	that is bounded above.
+\end{clm}
+
+\begin{proof}
+	If $\lim x_n \neq \infty$,
+	then by definition
+	$\exists \alpha > 0, \forall N \in \nats, \exists n > N x_n \le \alpha$.
+	Let $\alpha > 0$ and let $N \in \nats$.
+	Then, $\exists n_1 > N, x_{n_1} \le \alpha$.
+	Since $n_1 \in \nats$, we must have $\exists n_1 > n_1, x_{n_2} \le \alpha$,
+	and since $n_2 \in \nats$, we must have $\exists n_3 > n_2, x_{n_3} \le \alpha$.
+	We can continue this indefinitely,
+	so for some $n_{k-1} \in \nats$, we must have $\exists n_k > n_{k-1}, x_{n_k} \le \alpha$.
+	Thus we have a strictly increasing set of indices $n_1 < n_2 < ... < n_{k-1} < n_k < ...$
+	where $\forall k, x_{n_k} \le \alpha$,
+	so $\alpha$ is an upper bound of $x_{n_k}$,
+	and there exists an infinite subsequence of $x_n$
+	that is bounded above.
+\end{proof}
+
+\end{document}
