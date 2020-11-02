@@ -47,8 +47,8 @@ Define $x_n = 1 + \frac{1}{\sqrt{2}} + \frac{1}{\sqrt{3}} + ... \frac{1}{\sqrt{n
 \begin{proof}
 	Since $\lim a_n = -\infty$,
 	we have by definition
-	that $\forall \beta < 0, \exists N_\beta, \forall n > N_\beta, a_n < 0$.
-	let $\beta < 0$. Then, $\forall n > N_\beta$, we have $a_n < \beta$.
+	that $\forall \beta < 0, \exists N_\beta, \forall n > N_\beta, a_n < \beta$.
+	Let $\beta < 0$. Then, $\forall n > N_\beta$, we have $a_n < \beta$.
 	Since $\beta < 0$, we have:
 	\begin{align}
 		a_n < \beta < 0 \\
@@ -56,11 +56,13 @@ Define $x_n = 1 + \frac{1}{\sqrt{2}} + \frac{1}{\sqrt{3}} + ... \frac{1}{\sqrt{n
 		\frac{-1}{\beta} > \frac{-1}{a_n} > 0 \\
 		\frac{-1}{\beta} > |\frac{1}{a_n}| > 0
 	\end{align}
-	We see that $M_\eps = N_\frac{-1}{\beta}$ will work.
+	We see that $M_\eps = N_\frac{-1}{\eps}$ will work.
 	Thus, let $\eps > 0$,
-	and let $\eps  = \frac{-1}{\beta}$.
-	This works since $\eps > 0 \implies \frac{-1}{\beta} < 0$,
-	then, $\forall n > M_\eps$,
+	and let $\beta = \frac{-1}{\eps} < 0$,
+	then define
+	$M_\eps = N_\frac{-1}{\eps}$.
+	% This works since $\eps > 0 \implies \frac{-1}{\eps} < 0$.
+	Then, $\forall n > M_\eps$,
 	we have by the above order relations,
 	that $|\frac{1}{a_n}| < \frac{-1}{\beta} = \frac{-1}{-1/\eps} = \eps$,
 	therefore $\forall \eps > 0,
@@ -93,10 +95,13 @@ Define $x_n = 1 + \frac{1}{\sqrt{2}} + \frac{1}{\sqrt{3}} + ... \frac{1}{\sqrt{n
 	and since by assumption $a_n < 0$,
 	we have $-\eps < a_n < 0$,
 	therefore $\frac{1}{a_n} < \frac{-1}{\eps} < 0$,
-	so a value of $M_\beta = N_\frac{-1}{\eps}$ will work.
+	so a value of $M_\beta = N_\frac{-1}{\beta}$ will work.
 	Let $\beta < 0$
-	and let $\eps = \frac{-1}{\beta} > 0$.
-	$\forall n > M_\eps$,
+	and let $\eps = \frac{-1}{\beta} > 0$,
+	then define
+	$M_\beta = N_\frac{-1}{\beta}$.
+	By the above reasoning,
+	$\forall n > M_\beta$,
 	we have $\frac{1}{a_n} < \frac{-1}{\eps} = \frac{-1}{-1/\beta} = \beta$.
 	Then,
 	$\forall \beta < 0,
@@ -118,10 +123,10 @@ Define $x_n = 1 + \frac{1}{\sqrt{2}} + \frac{1}{\sqrt{3}} + ... \frac{1}{\sqrt{n
 \begin{proof}
 	If $\lim x_n \neq \infty$,
 	then by definition
-	$\exists \alpha > 0, \forall N \in \nats, \exists n > N x_n \le \alpha$.
+	$\exists \alpha \in \reals, \forall N \in \nats, \exists n > N, x_n \le \alpha$.
 	Let $\alpha > 0$ and let $N \in \nats$.
 	Then, $\exists n_1 > N, x_{n_1} \le \alpha$.
-	Since $n_1 \in \nats$, we must have $\exists n_1 > n_1, x_{n_2} \le \alpha$,
+	Since $n_1 \in \nats$, we must have $\exists n_2 > n_1, x_{n_2} \le \alpha$,
 	and since $n_2 \in \nats$, we must have $\exists n_3 > n_2, x_{n_3} \le \alpha$.
 	We can continue this indefinitely,
 	so for some $n_{k-1} \in \nats$, we must have $\exists n_k > n_{k-1}, x_{n_k} \le \alpha$.
