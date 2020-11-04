@@ -1,0 +1,209 @@
+\documentclass{article}
+
+\usepackage{amsmath, amssymb, amsthm}
+\newcommand{\reals}{\ensuremath{\mathbb{R}}}
+\newcommand{\nats}{\ensuremath{\mathbb{N}}}
+\newcommand{\eps}{\ensuremath{\epsilon}}
+\newcommand{\limx}[2]{\ensuremath{\underset{x\to #2 }{\lim} #1 (x)}}
+\newcommand{\limf}[1]{\ensuremath{\underset{x\to #1 }{\lim}}}
+\newtheorem{clm}{Claim}
+
+\title{Real Analysis Assignment 8}
+\author{Joel Savitz}
+
+\begin{document}
+
+\maketitle
+
+\textbf{Problem 1(a):}
+
+\begin{clm}
+	\begin{align}
+	\lim_{x\to 2} (x^2 + 3x) = 10
+	\end{align}
+\end{clm}
+
+\begin{proof}
+	We want to show that
+	$\forall \eps > 0, \exists \delta_\eps > 0,
+	\forall 0 < |x - 2| < \delta_\eps, |x^2 + 3x - 10| < \eps$.
+	We examine the consequent to find a value of delta
+	that satisifes this implication:
+	\begin{align}
+		|x^2 + 3x - 10| = & |(x+5)(x-2)| \\
+				= & |(x - 2 + 7)||(x - 2)| \\
+		\textrm{(triangle inequality:) }\le & (|x - 2| + 7)|x-2| \\
+		\textrm{(if $|x - 2| < \delta$) } < & (\delta + 7)\delta \\
+		\textrm{(if  $\delta \le 1$) } \le & (1 + 7)\delta \\
+				= & 8\delta \\
+			\textrm{(if $\delta \le \frac{\eps}{8}$) } \le & 8\frac{\eps}{8} = \eps
+	\end{align}
+	So, we can choose any $0 \le \delta_\eps \le \min(1, \frac{\eps}{8})$,
+	and then for an arbitrary $\eps > 0$,
+	we have 
+	$\forall 0 < |x - 2| < \delta_\eps, |x^2 + 3x - 10| < \eps$.
+	In summary,
+	we have that
+	$\forall \eps > 0,
+	\exists \delta_\eps > 0,
+	\forall 0 < |x - 2| < \delta_\eps,
+	|x^2+3x-10| < \eps$,
+	which is exactly the definition that 
+	$\underset{x\to 2}{\lim} (x^2 + 3x) = 10$.
+\end{proof}
+
+\textbf{Problem 1(b):}
+
+\begin{clm}
+	\begin{align}
+		\lim_{x\to -2} (\frac{x^2 - 5}{x - 1}) = \frac{1}{3}
+	\end{align}
+\end{clm}
+
+\begin{proof}
+	We want to show that
+	$\forall \eps > 0, \exists \delta_\eps > 0,
+	\forall 0 < |x + 2| < \delta_\eps, |\frac{x^2-5}{x-1} - \frac{1}{3}| < \eps$.
+
+	We examine the consequent to find a value of delta
+	that satisifes this implication:
+	\begin{align}
+		|\frac{x^2-5}{x-1} - \frac{1}{3}| = & | \frac{3x^2 - x - 14}{3(x-1)}| \\
+		= & |x+2| \frac{|3x-7|}{3|x - 1|}
+	\end{align}
+	We shrink grow the numerator and shrink the denominator to find a larger fraction we can work with:
+	\begin{align}
+		|3x-7| = |3x -6 + 1| \le |3x - 6| + 1 = |-3||x + 2| + 1 = 3|x + 2| + 1 \\
+		3|x - 1| = 3|x + 2 - 3| \geq 3(3 - |x + 2|)
+	\end{align}
+	Then, we continue with the above examination:
+	\begin{align}
+		|x+2| \frac{|3x-7|}{3|x - 1|} \le & |x + 2| \frac{3|x+2| + 1}{3(3 - |x + 2|)} \\
+		\textrm{ (if $ |x + 2| < \delta$) } < & \delta\frac{3\delta+1}{3(3 - \delta)} \\
+		\textrm{ (if $\delta \le 2$) } < & \delta\frac{3(2)+1}{3(3 - 2)} = \delta\frac{7}{3} \\
+		\textrm{ (if $\delta \le \frac{3 \eps}{7}$) } & \le \frac{3\eps}{7} \cdot \frac{7}{3} = \eps
+	\end{align}
+	So, we can choose any $0 \le \delta_\eps \le \min(2, \frac{3\eps}{7})$,
+	and then for an arbitrary $\eps > 0$,
+	we have 
+	$\forall 0 < |x + 2| < \delta_\eps, |\frac{x^2-5}{x-1} - \frac{1}{3}| < \eps$.
+	In summary,
+	we have that
+	$\forall \eps > 0,
+	\exists \delta_\eps > 0,
+	\forall 0 < |x + 2| < \delta_\eps, |\frac{x^2-5}{x-1} - \frac{1}{3}| < \eps$.
+	which is exactly the definition that 
+	$\underset{x\to -2}{\lim} (\frac{x^2 - 5}{x - 1}) = \frac{1}{3}$.
+\end{proof}
+
+\textbf{Problem 2:}
+
+\begin{clm}
+	If $\limx{f}{a}$ and $\limx{g}{a}$ both exist, then:
+	\begin{align}
+		\underset{x \to a}{\lim} (3f(x) - 4g(x))  = 3\limx{f}{a} - 4\limx{g}{b}
+	\end{align}
+\end{clm}
+
+\begin{proof}
+	Let $A = \limx{f}{a}$ and $B = \limx{g}{a}$.
+	By the definition of the limit of a function, we must have:
+	\begin{align}
+		\label{2a}
+		\forall \eps > 0, \exists \delta_\eps' > 0,
+		\forall 0 < |x - a| < \delta_\eps', |f(x) - A| < \eps \\
+		\label{2b}
+		\forall \eps > 0, \exists \delta_\eps'' > 0,
+		\forall 0 < |x - a| < \delta_\eps'', |g(x) - B| < \eps
+	\end{align}
+	We want a value of $\delta_\eps$
+	where $\forall x \in \reals, 0 < | x - a| < \delta_\eps
+	\implies |(3f(x) - 4g(x)) - (3A - 4B)$.
+	We can rewrite the consequent
+	as $|3(f(x) - A) - 4(g(x) - B)|$,
+	and by the triangle inequality,
+	we have 
+	$|3(f(x) - A) - 4(g(x) - B)| \le 3|f(x) - A| + 4|g(x) - B|$.
+	By the definitions stated in (\ref{2a}) and (\ref{2b}),
+	we have for $\delta_{\frac{\eps}{6}}'$
+	that
+	$3|f(x) - A| < 3 \frac{\eps}{6} = \frac{\eps}{2}$,
+	and
+	we have for $\delta_{\frac{\eps}{8}}''$
+	$4|g(x) - B| < 4 \frac{\eps}{8} = \frac{\eps}{2}$,
+	therefore,
+	if we choose any $0 < \delta_\eps \le \min(\delta_\frac{\eps}{6}',\delta_\frac{\eps}{8}'')$,
+	we have:
+	\begin{align}
+		3|f(x) - A| + 4|g(x) - B| < 3\frac{\eps}{6} + 4\frac{\eps}{8} = \frac{\eps}{2} + \frac{\eps}{2} = \eps
+	\end{align}
+	Therefore,
+	we have
+	$\forall \eps > 0,
+	\exists \delta_\eps > 0,
+	\forall 0 < | x - a | < \delta_\eps,
+	|(3f(x) - 4g(x)) - (3A - 4B)| < \eps$,
+	which is exactly the definition that
+	$\underset{x \to a}{\lim} (3f(x) - 4g(x))  = 3\limx{f}{a} - 4\limx{g}{b}$.
+\end{proof}
+
+\textbf{Problem 3(a):}
+
+\begin{clm}
+	$\limf{\infty}\frac{\cos^2x}{x^2} = 0$
+\end{clm}
+
+\begin{proof}
+	We want to show
+	that $\forall \eps > 0,
+	\exists \alpha_\eps \in \reals,
+	\forall x > \alpha_\eps,
+	|\frac{\cos^2x}{x^2}| < \eps$.
+
+	We examine $|\frac{\cos^2x}{x^2}|$
+	and see that it is simply
+	the square of a real number at every $x$,
+	so we know it is always positive,
+	thus $|\frac{\cos^2x}{x^2}| = \frac{\cos^2x}{x^2}$.
+	Then, since $\forall x, -1 \le \cos x \le 1$,
+	we have $\cos^2x \le 1$,
+	so $\frac{\cos^2x}{x^2} \le \frac{1}{x^2}$.
+	Since we must have $x > \alpha_\eps$,
+	we then see that $\frac{1}{x} < \frac{1}{\alpha_\eps}$,
+	thus $\frac{1}{x^2} < \frac{1}{\alpha_\eps^2}$.
+	If we choose $\alpha_\eps = \sqrt{1/\eps}$,
+	then $\frac{1}{x^2} < \frac{1}{\sqrt{1/\eps}^2} = \eps$.
+	In summary,
+	we have demonstrated
+	that
+	$\forall \eps > 0,
+	\exists \alpha_\eps \in \reals,
+	\forall x > \alpha_\eps,
+	|\frac{\cos^2x}{x^2}| < \eps$,
+	which is exactly the definition that
+	$\limf{\infty}\frac{\cos^2x}{x^2} = 0$.
+\end{proof}
+
+\textbf{Problem 3(b):}
+
+\begin{clm}
+	$\limf{\infty} \cos x \neq \frac{1}{2}$
+\end{clm}
+
+\begin{proof}
+	Let $\eps = \frac{1}{2}$ and let $\alpha \in \reals$.
+	By the archimedian property,
+	$\exists n > \alpha$.
+	Then, $2\pi n > n > \alpha$,
+	and $\forall n, \cos (2\pi n) = 1$,
+	thus $|\cos x - \frac{1}{2}| = \frac{1}{2} \geq \eps$.
+	We have demonstrated that
+	$\exists \eps > 0,
+	\forall \alpha \in \reals,
+	\exists x > \alpha,
+	|\cos x - \frac{1}{2}| \geq \eps$,
+	and this is exactly the definition that
+	$\limf{\infty} \cos x \neq \frac{1}{2}$.
+\end{proof}
+
+\end{document}
