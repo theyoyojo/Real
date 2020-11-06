@@ -71,7 +71,7 @@
 		|\frac{x^2-5}{x-1} - \frac{1}{3}| = & | \frac{3x^2 - x - 14}{3(x-1)}| \\
 		= & |x+2| \frac{|3x-7|}{3|x - 1|}
 	\end{align}
-	We shrink grow the numerator and shrink the denominator to find a larger fraction we can work with:
+	We grow the numerator and shrink the denominator to find a larger fraction we can work with:
 	\begin{align}
 		|3x-7| = |3x -6 + 1| \le |3x - 6| + 1 = |-3||x + 2| + 1 = 3|x + 2| + 1 \\
 		3|x - 1| = 3|x + 2 - 3| \geq 3(3 - |x + 2|)
@@ -80,7 +80,7 @@
 	\begin{align}
 		|x+2| \frac{|3x-7|}{3|x - 1|} \le & |x + 2| \frac{3|x+2| + 1}{3(3 - |x + 2|)} \\
 		\textrm{ (if $ |x + 2| < \delta$) } < & \delta\frac{3\delta+1}{3(3 - \delta)} \\
-		\textrm{ (if $\delta \le 2$) } < & \delta\frac{3(2)+1}{3(3 - 2)} = \delta\frac{7}{3} \\
+		\textrm{ (if $\delta \le 2$) } \le & \delta\frac{3(2)+1}{3(3 - 2)} = \delta\frac{7}{3} \\
 		\textrm{ (if $\delta \le \frac{3 \eps}{7}$) } & \le \frac{3\eps}{7} \cdot \frac{7}{3} = \eps
 	\end{align}
 	So, we can choose any $0 \le \delta_\eps \le \min(2, \frac{3\eps}{7})$,
@@ -194,9 +194,9 @@
 	Let $\eps = \frac{1}{2}$ and let $\alpha \in \reals$.
 	By the archimedian property,
 	$\exists n > \alpha$.
-	Then, $2\pi n > n > \alpha$,
-	and $\forall n, \cos (2\pi n) = 1$,
-	thus $|\cos x - \frac{1}{2}| = \frac{1}{2} \geq \eps$.
+	Then, let $x = 2\pi n > n > \alpha$.
+	Since $\forall n, \cos (2\pi n) = 1$,
+	we see that  $|\cos x - \frac{1}{2}| = \frac{1}{2} \geq \eps$.
 	We have demonstrated that
 	$\exists \eps > 0,
 	\forall \alpha \in \reals,
