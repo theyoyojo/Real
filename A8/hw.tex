@@ -38,7 +38,7 @@
 				= & 8\delta \\
 			\textrm{(if $\delta \le \frac{\eps}{8}$) } \le & 8\frac{\eps}{8} = \eps
 	\end{align}
-	So, we can choose any $0 \le \delta_\eps \le \min(1, \frac{\eps}{8})$,
+	So, we can choose any $0 < \delta_\eps \le \min(1, \frac{\eps}{8})$,
 	and then for an arbitrary $\eps > 0$,
 	we have 
 	$\forall 0 < |x - 2| < \delta_\eps, |x^2 + 3x - 10| < \eps$.
@@ -83,7 +83,7 @@
 		\textrm{ (if $\delta \le 2$) } \le & \delta\frac{3(2)+1}{3(3 - 2)} = \delta\frac{7}{3} \\
 		\textrm{ (if $\delta \le \frac{3 \eps}{7}$) } & \le \frac{3\eps}{7} \cdot \frac{7}{3} = \eps
 	\end{align}
-	So, we can choose any $0 \le \delta_\eps \le \min(2, \frac{3\eps}{7})$,
+	So, we can choose any $0 < \delta_\eps \le \min(2, \frac{3\eps}{7})$,
 	and then for an arbitrary $\eps > 0$,
 	we have 
 	$\forall 0 < |x + 2| < \delta_\eps, |\frac{x^2-5}{x-1} - \frac{1}{3}| < \eps$.
@@ -125,11 +125,12 @@
 	we have 
 	$|3(f(x) - A) - 4(g(x) - B)| \le 3|f(x) - A| + 4|g(x) - B|$.
 	By the definitions stated in (\ref{2a}) and (\ref{2b}),
-	we have for $\delta_{\frac{\eps}{6}}'$
+	we have for $0 < |x - a| < \delta_{\frac{\eps}{6}}'$
 	that
 	$3|f(x) - A| < 3 \frac{\eps}{6} = \frac{\eps}{2}$,
 	and
-	we have for $\delta_{\frac{\eps}{8}}''$
+	we have for $0 < |x - a| < \delta_{\frac{\eps}{8}}''$
+	that
 	$4|g(x) - B| < 4 \frac{\eps}{8} = \frac{\eps}{2}$,
 	therefore,
 	if we choose any $0 < \delta_\eps \le \min(\delta_\frac{\eps}{6}',\delta_\frac{\eps}{8}'')$,
