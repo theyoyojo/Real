@@ -1,0 +1,212 @@
+\documentclass{article}
+
+\usepackage{amsmath, amssymb, amsthm}
+\newcommand{\reals}{\ensuremath{\mathbb{R}}}
+\newcommand{\rats}{\ensuremath{\mathbb{Q}}}
+\newcommand{\irats}{\ensuremath{\reals \backslash \rats}}
+\newcommand{\nats}{\ensuremath{\mathbb{N}}}
+\newcommand{\eps}{\ensuremath{\epsilon}}
+\newcommand{\limx}[2]{\ensuremath{\underset{x\to #2 }{\lim} #1 (x)}}
+\newcommand{\limf}[1]{\ensuremath{\underset{x\to #1 }{\lim}}}
+\newcommand{\pt}[1]{\textrm{ #1 }}
+\newtheorem{clm}{Claim}
+
+\title{Real Analysis Assignment 9}
+\author{Joel Savitz}
+
+\begin{document}
+
+\maketitle
+
+\textbf{Problem 1:}
+
+\begin{clm}
+	$f(x) = 3x^2 + 4x + 5$ is continuous at every point $x_0$
+\end{clm}
+
+\begin{proof}
+	We want to prove that at any $x_0 \in \reals$,
+	$\forall \eps > 0 \exists \delta_\eps > 0 \forall |x - x_0| < \delta_\eps, |(3x^2 + 4x + 5) - (3x_0^2 + 4x_0 + 5)| < \eps$.
+
+	We examine as follows:
+	\begin{align}
+		|(3x^2 + 4x + 5) - (3x_0^2 + 4x_0 + 5)| = & |3(x^2 - x_0^2) + 4(x - x_0)| \\
+		= & |3(x-x_0)(x+x_0) + 4(x - x_0) \\
+		\pt{(triangle inequality)}\le & 3|x-x_0|\cdot|x+x_0| + 4|x - x_0| \\
+		= & 3|x-x_0|\cdot|x-x_0 + 2x_0| + 4|x - x_0| \\
+		\pt{(triangle inequality)}\le & 3|x-x_0|\cdot(|x-x_0| + 2|x_0|) + 4|x - x_0| \\
+		\pt{(if $|x - x_0| < \delta$)} < & 3\delta(\delta + 2|x_0|) + 4\delta \\
+		= & 3\delta(\delta + 2|x_0| + 4) \\
+		\pt{(if $\delta \le 1$)} \le & 3\delta(5 + 2|x_0|) \\
+		\pt{(if $\delta \le \frac{\eps}{3(5 + 2|x_0|)}$)} \le &\frac{\eps \cdot 3(5 + 2|x_0|)}{3(5 + 2|x_0|)} = \eps
+	\end{align}
+
+	Thus we can choose any $0 < \delta_\eps \le \min(1, \frac{\eps}{3(5 + 2|x_0|)})$
+	and then we have for our arbitrary $x_0$
+	that $\forall \eps > 0,
+	\exists \delta_\eps > 0,
+	\forall |x - x_0| < \delta_\eps,
+	|(3x^2 + 4x + 5) - (3x_0^2 + 4x_0 + 5)| < \eps$,
+	which is exactly the definition that $f(x)$
+	is continuous at any point $x_0$.
+\end{proof}
+
+\textbf{Problem 2:}
+
+Suppose $f(x)$ is continuous at some $c \in \reals$ and assume $f(c) < 2$.
+
+\begin{clm}
+	There exists a neighborhood $A$ of $c$ such that $\forall x \in A, f(x) < 2$
+\end{clm}
+
+\begin{proof}
+	$f$ is continuous at $c$ if and only if
+	$\forall \eps > 0, \exists \delta_\eps > 0,
+	\forall |x - c| < \delta_\eps, |f(x) - f(x)| < \eps$.
+	In particular,
+	$\exists \delta_{2-f(c)}, \forall |x - c| < \delta_{2-f(c)}, |f(x) - f(x)| < 2 - f(c)$.
+	Let $A = (c - \delta_{2 - f(c)}, c + \delta_{2 - f(c)})$.
+	We see that $x \in A$ which is a neighborhood of $c$.
+	Then for any $x \in A$, $|f(x) - f(c)| < 2 - f(c) \iff -(2 - f(c)) < f(x) - f(c) < 2 - f(c)
+	\implies f(x) < 2$.
+	Thus there exists a neighborhood $A$ of $c$ such that $\forall x \in A, f(x) < 2$.
+\end{proof}
+
+\textbf{Problem 3:}
+
+Supose $f(x)$ is continuous on the closed interval $[a,b]$ and assume $\forall x \in [a,b], f(x) > 0$.
+
+\begin{clm}
+	$\underset{x \in [a,b]}{\inf} f(x) > 0$.
+\end{clm}
+
+\begin{proof}
+	By the Extreme Value Theorem,
+	$f$ attains maximum and minimum values in $[a,b]$.
+	In particular, $\exists x_m \in [a,b], f(x_m) = \inf {f(x), x \in [a,b]}$,
+	and since $\forall x \in [a,b], f(x) > 0$,
+	we have that $f(x_m) > 0$,
+	so $\underset{x \in [a,b]}{\inf} f(x) > 0$.
+\end{proof}
+
+Define the following function on the closed interval $[-1, 1]$:
+
+$g(x) = \begin{cases} |x| & \pt{if $x \neq 0$} \\ 1 & \pt{if $x = 0$} \end{cases}$
+
+$g(x)$ is discontinuous at $0$ since $0 = \underset{x \to 0}{\lim g(x)} \neq g(x) = 1$.
+We also have that $\forall x \in [-1, 1], g(x) > 0$,
+since $|x| = 0 \iff x = 0$, but $g(0) = 1 > 0$.
+However, it is clear that $\underset{x \in [-1,1]}{\inf} g(x) = 0$.
+
+\medskip
+
+\textbf{Problem 4:}
+
+Define $f(x) = \begin{cases} x^2 & \pt{if $x$ is irrational} \\ 2x-1 & \pt{if $x$ is rational} \end{cases}$
+
+\begin{clm}
+	$f(x)$ is discontinuous at every real $x_0 \neq 1$.
+\end{clm}
+
+\begin{proof}
+	Suppose $x_0 \in \reals, x_0 \neq 1$
+	We will show that $f(x)$ satisfies the negation of the definition of continuity
+	for real $x_0$ under this constraint,
+	that is to say,
+	$\exists \eps > 0,
+	\forall \delta > 0,
+	\exists x \in (x_0 - \delta, x_0 + \delta),
+	|f(x) - f(x_0)| \geq \eps$.
+	Let $\eps = (x_0 - 1)^2 > 0$ and $\delta > 0$.
+	We consider three cases:
+	\begin{itemize}
+		\item $x \in \rats \land x_0 \geq 0$
+		\item $x \in \rats \land x_0 < 0$
+		\item $x \in \irats$
+	\end{itemize}
+	If
+	$\exists x \in (x_0 - \delta, x_0 + \delta),
+	|f(x) - f(x_0)| \geq \eps$
+	holds for each of the three cases,
+	then $f(x)$ is discontinuous at all $x_0 \neq 1$.
+
+	Suppose $x_0 \in \rats \land x_0 \geq 0$.
+	Then since $\irats$ is dense in $\rats$,
+	$\exists x_0 < x < x_0 + \delta$.
+	Then, $0 \le x_0 < x \implies x_0^2 < x^2$,
+	so:
+	\begin{align}
+		x_0^2 -2x_0 + 1 < & x^2 - 2x_0 + 1 \\
+		(x_0 -1)^2 < & |x^2 - (2x_0 - 1)| \\
+		\eps = (x_0 - 1)^2 \le & |f(x) - f(x_0)|
+	\end{align}
+
+	Suppose $x_0 \in \rats \land x_0 < 0$.
+	Then since $\irats$ is dense in $\rats$,
+	$\exists x_0 - \delta < x < x_0$.
+	Then, $0 > x_0 > x \implies x_0^2 < x^2$,
+	so:
+	\begin{align}
+		x_0^2 -2x_0 + 1 < & x^2 - 2x_0 + 1 \\
+		(x_0 -1)^2 < & |x^2 - (2x_0 - 1)| \\
+		\eps = (x_0 - 1)^2 \le & |f(x) - f(x_0)|
+	\end{align}
+	% redundant ^^?
+
+	Suppose $x_0 \in \irats$.
+	Then since $\rats$ is dense in $\irats$,
+	$\exists x_0 - \delta < x < x_0$.
+	Then:
+	\begin{align}
+		-2x > &-2x_0 \\
+		x_0^2 - 2x + 1 > & x_0^2 - 2x_0 + 1 \\
+		|x_0^2 - (2x -1)| > & (x_0 - 1)^2 \\
+		|2x -1 - x_0^2| > & (x_0 - 1)^2 \\
+		|f(x) - f(x_0)| \geq & (x_0 - 1)^2 = \eps\\
+	\end{align}
+	
+	Since $\forall x_0 \neq 1,
+	\exists \eps > 0,
+	\forall \delta > 0,
+	\exists x \in (x_0 - \delta, x_0 + \delta),
+	|f(x) - f(x_0)| \geq \eps$,
+	we have that $f(x)$
+	is discontinuous
+	at every $x_0 \neq 1$.
+
+	We will now show that
+	$f(x)$ is continuous at $x_0 = 1$
+	by finding for any $\eps > 0$
+	a $\delta_\eps > 0$
+	where $|x - 1| < \delta_\eps$
+	implies that $|f(x) - 1| < \eps$.
+	Suppose that $x \in \rats$. Then:
+	\begin{align}
+		|f(x) - 1| = & |2x - 1 - 1| \\
+			   = & 2|x - 1| \\
+		\pt{(if $|x - 1| < \delta$)} < & 2\delta \\
+		\pt{(if $\delta \le \frac{\eps}{2}$)} \le & 2 \frac{\eps}{2} = \eps
+	\end{align}
+	Suppose that $x \in \irats$. Then:
+	\begin{align}
+		|f(x) - 1| = & |x^2 - 1| \\
+			   = & 2|x - 1| \cdot |x + 1| \\
+			   = & 2|x - 1| \cdot |x - 1 + 2| \\
+			   \pt{(triangle inequality)} \le & 2|x - 1| \cdot (|x - 1|+ 2) \\
+			   \pt{(if $|x - 1| < \delta$)} < & \delta(\delta + 2) \\
+			   \pt{(if $\delta \le 1$)} \le & \delta(1 + 2) = 3\delta \\
+		\pt{(if $\delta \le \frac{\eps}{3}$)} \le & 3 \frac{\eps}{3} = \eps
+	\end{align}
+	So, we can choose any $0 < \delta_\eps < \min(1, \frac{\eps}{3})$,
+	and we have that
+	$\forall \eps > 0,
+	\exists \delta_\eps > 0,
+	\forall |x - 1| < \delta_\eps,
+	|f(x) - 1| < \eps$,
+	which is exactly the definition
+	that $f(x)$ is continuous at $x_0 = 1$.
+	Therefore,
+	$f(x)$ is discontinuous at every point $x_0 \neq 1$.
+\end{proof}
+
+\end{document}
