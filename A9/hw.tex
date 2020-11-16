@@ -26,22 +26,22 @@
 
 \begin{proof}
 	We want to prove that at any $x_0 \in \reals$,
-	$\forall \eps > 0 \exists \delta_\eps > 0 \forall |x - x_0| < \delta_\eps, |(3x^2 + 4x + 5) - (3x_0^2 + 4x_0 + 5)| < \eps$.
+	$\forall \eps > 0, \exists \delta_\eps > 0, \forall |x - x_0| < \delta_\eps, |(3x^2 + 4x + 5) - (3x_0^2 + 4x_0 + 5)| < \eps$.
 
 	We examine as follows:
 	\begin{align}
 		|(3x^2 + 4x + 5) - (3x_0^2 + 4x_0 + 5)| = & |3(x^2 - x_0^2) + 4(x - x_0)| \\
-		= & |3(x-x_0)(x+x_0) + 4(x - x_0) \\
+		= & |3(x-x_0)(x+x_0) + 4(x - x_0)| \\
 		\pt{(triangle inequality)}\le & 3|x-x_0|\cdot|x+x_0| + 4|x - x_0| \\
 		= & 3|x-x_0|\cdot|x-x_0 + 2x_0| + 4|x - x_0| \\
 		\pt{(triangle inequality)}\le & 3|x-x_0|\cdot(|x-x_0| + 2|x_0|) + 4|x - x_0| \\
 		\pt{(if $|x - x_0| < \delta$)} < & 3\delta(\delta + 2|x_0|) + 4\delta \\
-		= & 3\delta(\delta + 2|x_0| + 4) \\
-		\pt{(if $\delta \le 1$)} \le & 3\delta(5 + 2|x_0|) \\
-		\pt{(if $\delta \le \frac{\eps}{3(5 + 2|x_0|)}$)} \le &\frac{\eps \cdot 3(5 + 2|x_0|)}{3(5 + 2|x_0|)} = \eps
+		= & \delta(3\delta + 6|x_0| + 4) \\
+		\pt{(if $\delta \le 1$)} \le & \delta(7 + 6|x_0|) \\
+		\pt{(if $\delta \le \frac{\eps}{7 + 6|x_0|}$)} \le &\frac{\eps \cdot (7 + 6|x_0|)}{7 + 6|x_0|)} = \eps
 	\end{align}
 
-	Thus we can choose any $0 < \delta_\eps \le \min(1, \frac{\eps}{3(5 + 2|x_0|)})$
+	Thus we can choose any $0 < \delta_\eps \le \min(1, \frac{\eps}{7 + 6|x_0|)})$
 	and then we have for our arbitrary $x_0$
 	that $\forall \eps > 0,
 	\exists \delta_\eps > 0,
@@ -62,7 +62,7 @@ Suppose $f(x)$ is continuous at some $c \in \reals$ and assume $f(c) < 2$.
 \begin{proof}
 	$f$ is continuous at $c$ if and only if
 	$\forall \eps > 0, \exists \delta_\eps > 0,
-	\forall |x - c| < \delta_\eps, |f(x) - f(x)| < \eps$.
+	\forall |x - c| < \delta_\eps, |f(x) - f(c)| < \eps$.
 	In particular,
 	$\exists \delta_{2-f(c)}, \forall |x - c| < \delta_{2-f(c)}, |f(x) - f(x)| < 2 - f(c)$.
 	Let $A = (c - \delta_{2 - f(c)}, c + \delta_{2 - f(c)})$.
@@ -93,7 +93,7 @@ Define the following function on the closed interval $[-1, 1]$:
 
 $g(x) = \begin{cases} |x| & \pt{if $x \neq 0$} \\ 1 & \pt{if $x = 0$} \end{cases}$
 
-$g(x)$ is discontinuous at $0$ since $0 = \underset{x \to 0}{\lim g(x)} \neq g(x) = 1$.
+$g(x)$ is discontinuous at $0$ since $0 = \underset{x \to 0}{\lim} g(x) \neq g(x) = 1$.
 We also have that $\forall x \in [-1, 1], g(x) > 0$,
 since $|x| = 0 \iff x = 0$, but $g(0) = 1 > 0$.
 However, it is clear that $\underset{x \in [-1,1]}{\inf} g(x) = 0$.
@@ -180,6 +180,7 @@ Define $f(x) = \begin{cases} x^2 & \pt{if $x$ is irrational} \\ 2x-1 & \pt{if $x
 	a $\delta_\eps > 0$
 	where $|x - 1| < \delta_\eps$
 	implies that $|f(x) - 1| < \eps$.
+
 	Suppose that $x \in \rats$. Then:
 	\begin{align}
 		|f(x) - 1| = & |2x - 1 - 1| \\
@@ -187,17 +188,18 @@ Define $f(x) = \begin{cases} x^2 & \pt{if $x$ is irrational} \\ 2x-1 & \pt{if $x
 		\pt{(if $|x - 1| < \delta$)} < & 2\delta \\
 		\pt{(if $\delta \le \frac{\eps}{2}$)} \le & 2 \frac{\eps}{2} = \eps
 	\end{align}
+
 	Suppose that $x \in \irats$. Then:
 	\begin{align}
 		|f(x) - 1| = & |x^2 - 1| \\
-			   = & 2|x - 1| \cdot |x + 1| \\
-			   = & 2|x - 1| \cdot |x - 1 + 2| \\
-			   \pt{(triangle inequality)} \le & 2|x - 1| \cdot (|x - 1|+ 2) \\
+			   = & |x - 1| \cdot |x + 1| \\
+			   = & |x - 1| \cdot |x - 1 + 2| \\
+			   \pt{(triangle inequality)} \le & |x - 1| \cdot (|x - 1|+ 2) \\
 			   \pt{(if $|x - 1| < \delta$)} < & \delta(\delta + 2) \\
 			   \pt{(if $\delta \le 1$)} \le & \delta(1 + 2) = 3\delta \\
 		\pt{(if $\delta \le \frac{\eps}{3}$)} \le & 3 \frac{\eps}{3} = \eps
 	\end{align}
-	So, we can choose any $0 < \delta_\eps < \min(1, \frac{\eps}{3})$,
+	So, we can choose any $0 < \delta_\eps \le \min(1, \frac{\eps}{3})$,
 	and we have that
 	$\forall \eps > 0,
 	\exists \delta_\eps > 0,
