@@ -1,0 +1,182 @@
+\documentclass{article}
+
+\usepackage{amsmath, amssymb, amsthm}
+\newcommand{\reals}{\ensuremath{\mathbb{R}}}
+\newcommand{\rats}{\ensuremath{\mathbb{Q}}}
+\newcommand{\irats}{\ensuremath{\reals \backslash \rats}}
+\newcommand{\nats}{\ensuremath{\mathbb{N}}}
+\newcommand{\eps}{\ensuremath{\epsilon}}
+\newcommand{\limx}[2]{\ensuremath{\underset{x\to #2 }{\lim} #1 (x)}}
+\newcommand{\limf}[1]{\ensuremath{\underset{x\to #1 }{\lim}}}
+\newcommand{\pt}[1]{\textrm{ #1 }}
+\newtheorem{clm}{Claim}
+
+\title{Real Analysis Assignment 10}
+\author{Joel Savitz}
+
+\begin{document}
+
+\maketitle
+
+\textbf{Problem 1:}
+
+Define $f(x) = \frac{1}{x} + \cos x$ and $A = [1,\infty)$
+
+\begin{clm}
+	$f(x)$ is uniformly continuous on $A$.
+\end{clm}
+
+\begin{proof}
+	We want to show that
+	$\forall \eps > 0,
+	\exists \delta_\eps > 0,
+	\forall x \in A, \forall y \in A,
+	|x - y| < \delta_\eps
+	\implies |f(x) - f(y)| < \eps$.
+	We examine the consequent to find a suitable choice of $\delta_\eps$:
+	\begin{align}
+		|f(x) - f(y)| = & |\frac{1}{x} + \cos x - (\frac{1}{y} + \cos y)| \\
+		= & |\frac{1}{x} - \frac{1}{y} + \cos x - \cos y| \\
+		\pt{(trianlge inequality)} \le & |\frac{1}{x} - \frac{1}{y}| + |\cos x - \cos y|
+	\end{align}
+	Now we examine each of the last two terms individually. For the first:
+	\begin{align}
+		|\frac{1}{x} - \frac{1}{y}| = & \frac{|x - y|}{xy} \\
+		\pt{($xy \geq 1$)} \le & |x - y|
+	\end{align}
+	For the second:
+	\begin{align}
+		|\cos x - \cos y| = & |-2 \sin(\frac{x - y}{2})\sin(\frac{x - y}{2})| \\
+		\pt{($\forall x, \sin x \le 1$)} \le & |2 \sin(\frac{x - y}{2})| \\
+		\pt{($\forall x > 0, | \sin x | \le |x|$)} \le & |2 \frac{x - y}{2}| = |x - y|
+	\end{align}
+	Now, we continue with the full examination:
+	\begin{align}
+		|\frac{1}{x} - \frac{1}{y}| + |\cos x - \cos y| \le & 2|x - y| \\
+		\pt{(if $|x - y| < \delta$)} < & 2\delta \\
+		\pt{(if $\delta \le \frac{\eps}{2}$)} \le & 2 \frac{\eps}{2} = \eps
+	\end{align}
+	Therefore, we can choose $\delta_\eps = \frac{\eps}{2}$,
+	and we have:
+	$\forall \eps > 0,
+	\exists \delta_\eps > 0,
+	\forall x \in A, \forall y \in A,
+	|x - y| < \delta_\eps
+	\implies |f(x) - f(y)| < \eps$,
+	which is exactly the definition that
+	$f(x)$ is uniformly continuous on $A = [1, \infty)$.
+\end{proof}
+
+\textbf{Problem 2:}
+
+Define $f(x) = \frac{1}{x} + \cos x$ and $A = (0,1]$.
+
+\begin{clm}
+	$f(x)$ is not uniformly continuous on $A$.
+\end{clm}
+
+\begin{proof}
+	We want to show that:
+	$\exists \eps > 0,
+	\forall \delta > 0,
+	\exists x \in A, y \in A,
+	|x - y| < \delta
+	\implies |f(x) - f(y)| \geq \eps$.
+	We examine the consequent to find a suitable choice of $\eps$.
+	\begin{align}
+		|f(x) - f(y)| = & |\frac{1}{x} + \cos x - (\frac{1}{y} + \cos y)| \\
+		= & |\frac{1}{x} - \frac{1}{y} + \cos x - \cos y| \\
+		\pt{(rev. triangle inequality)} \ge & |\frac{1}{x} - \frac{1}{y}| - |\cos x - \cos y| \\
+	\end{align}
+	Since $0 < \delta < \delta + 1$, we have $0 < \frac{\delta}{\delta + 1} < 1$.
+	Let $x = \frac{\delta}{\delta + 1}$ and let $y = \frac{x}{2}$.
+	This is valid since $|x - y| = \frac{\delta}{2(\delta + 1)} < \delta$.
+	We look at each term of the last expression to find bounds.
+	For the first:
+	\begin{align}
+		|\frac{1}{x} - \frac{1}{y}| = & \frac{|x - y|}{xy} \\
+		= & \frac{|x - \frac{x}{2}|}{x\frac{x}{2}} \\
+		= & \frac{\frac{x}{2}}{\frac{x^2}{2}} \\
+		= & \frac{1}{x} \\
+		\pt{($x < 1$)} \geq & 1
+	\end{align}
+	For the second, we begin with the fact that cosine is monotone decreasing over $A$:
+	\begin{align}
+		\forall x \in A, & \cos 0  = 1 \geq \cos x \geq \cos 1 \\
+		\forall y \in A, & -\cos 1 \geq -\cos y \geq -\cos 0 =  -1 \\
+				 & 1 - \cos 1 \geq \cos x - \cos y \geq \cos 1 - 1 \\
+				 & 1 - \cos 1 \geq \cos x - \cos y \geq -(1 - \cos 1)  \\
+				 & 1 - \cos 1 \geq |\cos x - \cos y|
+	\end{align}
+	We conclude the examination as follows;
+	\begin{align}
+		|\frac{1}{x} - \frac{1}{y}| - |\cos x - \cos y| \geq & 1 - (1 - \cos 1) \\
+								     & \cos 1 = \eps
+	\end{align}
+	To conclude, we have that
+	$\exists \eps > 0,
+	\forall \delta > 0,
+	\exists x \in A, y \in A,
+	|x - y| < \delta
+	\implies |f(x) - f(y)| \geq \eps$.
+	which is exactly the definition that
+	$f(x)$ is not uniformly continuous on $A$.
+\end{proof}
+
+\textbf{Problem 3:}
+
+Suppose $f(x)$ and $g(x)$
+are uniformly continuous on some interval $E$
+and both functions are bounded.
+Let $|f(x)| \le A \land |g(x)| \le B$.
+
+\begin{clm}
+	$f(x) \cdot g(x)$ is uniformly continuous on $E$.
+\end{clm}
+
+\begin{proof}
+	Since $f(x)$ is uniformly continuous on $E$, we have:
+	$\forall \eps > 0,
+	\exists \delta_\eps' > 0,
+	\forall x \in E, y \in E,
+	|x - y| < \delta_\eps'
+	\implies |f(x) - f(y)| < \eps$.
+	Since $g(x)$ is uniformly continuous on $E$, we have:
+	$\forall \eps > 0,
+	\exists \delta_\eps'' > 0,
+	\forall x \in E, y \in E,
+	|x - y| < \delta_\eps''
+	\implies |g(x) - g(y)| < \eps$.
+	We want to show that
+	$\forall \eps > 0,
+	\exists \delta_\eps > 0,
+	\forall x \in E, y \in E,
+	|x - y| < \delta_\eps
+	\implies |f(x) g(x) - f(y)g(y)| < \eps$,
+	so we will examine the consequent to find a suitable value of $\delta_\eps$.
+	\begin{align}
+		|f(x)g(x) - f(y)g(y)| = & |f(x)g(x) - f(x)g(y) + f(x) g(y) -f(y)g(y)| \\
+		\pt{(triangle inequality)} \le & |f(x)g(x) - f(x)g(y)| + |f(x) g(y) -f(y)g(y)| \\
+		= & |f(x)\big(g(x) - g(y)\big)| + |g(y)\big(f(x) -f(y)\big)| \\
+		\pt{(use bounds)} \le & A|g(x) - g(y)| + B|f(x) - f(y)|
+	\end{align}
+	By the definitions above,
+	we have $\forall x \in E, y \in E, \Big(|x - y| < \delta_{\frac{\eps}{2B}}' \implies |f(x) - f(y)| < \frac{\eps}{2B}\Big) \land
+	\Big(|x - y| < \delta_{\frac{\eps}{2A}}'' \implies |g(x) = g(y)| < \frac{\eps}{2A}\Big)$.
+	Thus, if we choose $\delta_\eps = \min( \delta_{\frac{\eps}{2B}}' \delta_{\frac{\eps}{2A}}'')$,
+	we have:
+	\begin{align}
+		A|g(x) - g(y)| + B|f(x) - f(y)| < & A\frac{\eps}{2A} + B\frac{\eps}{2B} \\
+		= & \frac{\eps}{2} + \frac{\eps}{2} = \eps
+	\end{align}
+	In conclusion, we have
+	$\forall \eps > 0,
+	\exists \delta_\eps > 0,
+	\forall x \in E, y \in E,
+	|x - y| < \delta_\eps
+	\implies |f(x) g(x) - f(y)g(y)| < \eps$,
+	which is exactly the definition that
+	$f(x) \cdot g(x)$ is uniformly continuous on $E$.
+\end{proof}
+
+\end{document}
