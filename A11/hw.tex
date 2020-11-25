@@ -187,10 +187,21 @@ $\limxy{n}{\infty} f_n(x) = f(x) =
 		= & 1
 	\end{align}
 	So $1$ is an upper bound of $|f_n(x) - f(x)|$.
-	Let $1 > \eps > 0$ and let $x = \eps$.
-	Then, $3\eps^{2n} + 1 > \eps^{2n} + 1$,
-	so $\frac{3\eps^{2n} + 1}{\eps^{2n} + 1} = \frac{2\eps^{2n}}{\eps^{2n} + 1} + \eps > 1$,
-	and $|f_n(\eps) - f(\eps)| = \frac{2\eps^{2n}}{\eps^{2n} + 1} < 1 - \eps$,
+	Let $1 > \eps > 0$ and let $x = (1 - \eps)^{1/2n} $.
+	Then:
+	\begin{align}
+		|f_n(x) - f(x)| = & |\frac{x^{2n} - 1}{x^{2n} + 1} + 1| \\
+			= & \frac{2x^{2n}}{x^{2n} + 1} \\
+			= & \frac{2(1-\eps)}{(1-\eps) + 1} \\
+			= & \frac{2-2\eps}{2-\eps} \label{eq666}
+	\end{align}
+	We verify that (\ref{eq666}) is greater than $1 - \eps$:
+	\begin{align}
+		\frac{2-2\eps}{2-\eps} > & 1 - \eps \\
+		2-2\eps > & (1-\eps)(2-\eps) = 2 - 3\eps + \eps^2 \\
+		\eps > & \eps^2
+	\end{align}
+	This last inequality is true since $0 < \eps < 1$,
 	so $1 - \eps$ is not an upper bound of $|f_n(x) - f(x)|$,
 	and we have $\underset{x \in A}{\sup}|f_n(x) - f(x)| = 1$.
 	Then, $\limxy{n}{\infty}\Big(\underset{x \in A}{\sup}|f_n(x) - f(x)|\Big) = 1 \neq 0$,
