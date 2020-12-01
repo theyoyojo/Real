@@ -1,0 +1,126 @@
+\documentclass{article}
+
+\usepackage{amsmath, amssymb, amsthm}
+\newcommand{\reals}{\ensuremath{\mathbb{R}}}
+\newcommand{\rats}{\ensuremath{\mathbb{Q}}}
+\newcommand{\irats}{\ensuremath{\reals \backslash \rats}}
+\newcommand{\nats}{\ensuremath{\mathbb{N}}}
+\newcommand{\eps}{\ensuremath{\epsilon}}
+\newcommand{\infx}[1]{\ensuremath{\underset{#1}{\inf}}}
+\newcommand{\supx}[1]{\ensuremath{\underset{#1}{\sup}}}
+\newcommand{\pt}[1]{\textrm{ #1 }}
+\newtheorem{clm}{Claim}
+
+\title{Real Analysis Assignment 12}
+\author{Joel Savitz}
+
+\begin{document}
+
+\maketitle
+
+\textbf{Problem 1:}
+
+Define $f(x) = \begin{cases}
+	-3, & x = 4 \\
+	4, & x = 5 \\
+	0, & x \in [3,6], x \neq 4, x \neq 5 \\
+\end{cases}$ on the interval $[3,6]$.
+
+\begin{clm}
+	$f$ is Riemann integrable over $[3,6]$ and $\underset{[3,6]}{\int}f = 0$.
+	% $f$ is Riemann integrable over $[3,6]$ and $\int_3^6 f = 0$.
+\end{clm}
+
+\begin{proof}
+	Let $\delta > 0$ be small,
+	and define the partition
+	$P = \{ 3, 4-\delta, 4+\delta, 5-\delta, 5+\delta, 6 \}$.
+	We calculate the lower sum:
+	\begin{align}
+		L(f,P)   &= \sum_{j=1}^5 \infx{x \in I_j} f(x) \cdot \Delta x_j \\
+			 & 0(4-\delta - 3) -3(4+\delta-4+\delta) + 0(5-\delta-4-\delta) \nonumber \\
+			 &+ 0(5+\delta-5+\delta) + 0(6 - 5 - \delta) \\
+			 &= -6\delta
+	\end{align}
+	And the upper sum:
+	\begin{align}
+		U(f,P)   &= \sum_{j=1}^5 \supx{x \in I_j} f(x) \cdot \Delta x_j \\
+			 & 0(4-\delta - 3) + 0(4+\delta-4+\delta) + 0(5-\delta-4-\delta) \nonumber \\
+			 &+ 4(5+\delta-5+\delta) + 0(6 - 5 - \delta) \\
+			 &= 8\delta
+	\end{align}
+	Let $\eps > 0$ and impose the constraint that $\delta < \frac{\eps}{14}$.
+	Then, $U(f,P) - L(f,P) = 8\delta - (-6\delta) = 14\delta < 14\frac{\eps}{14} = \eps$.
+	Therefore,
+	$\forall \eps > 0,
+	\exists P_\eps = P \in \mathcal{P}([3,6]),
+	U(f,P_\eps) - L(P,\eps) < \eps$,
+	so $f$ satisfies Riemann's condition
+	on the interval $[3,6]$.
+	This is true if and only if
+	$f$ is Riemann integrable over $[3,6]$.
+	Then, since $L(f,P) \le L(f) \le U(f) \le U(f,P)$,
+	we have for a small $\delta > 0$
+	that $-6\delta \le L(f) \le U(f) \le 8\delta$,
+	and since when $\delta$ is  arbitrarily small,
+	$-6\delta$ and $8\delta$ will be arbitrarily close to $0$,
+	so $0 \le L(f) \le U(f) \le 0$,
+	implying that $L(f) = U(f) = 0$
+	and equivalently that 
+	$\underset{[3,6]}{\int}f = 0$.
+\end{proof}
+
+\textbf{Problem 2:}
+
+Define $f(x) = \begin{cases}
+	3, & 1 \le x < 2 \\
+	2, & 2 \le x \le 4 \\
+	4, & 4 < x \le 5 \\
+\end{cases}$ on the interval $[1,5]$.
+
+\begin{clm}
+	$f$ is Riemann integrable on $[1,5]$ and $\underset{[1,5]}{\int}f = 11$.
+\end{clm}
+
+\begin{proof}
+	By inspection, $\forall x \in [1,5], |f(x)| \le 4$,
+	therefore $f$ is bounded on $[1,5]$.
+	Define the finite sequence of intervals
+	$a_1 = (2-\frac{\eps}{8},2+\frac{\eps}{8})$
+	and $a_2 = (4-\frac{\eps}{8}, 4+\frac{\eps}{8})$.
+	Then, the set of discontinuities of $f$ in $[1,5]$,
+	that is $\{2,4\}$ is a subset of $a_1 \cup a_2$.
+	Furthermore, $(2+\frac{\eps}{8} - (2-\frac{\eps}{8})) + 
+	(4+\frac{\eps}{8} - (4-\frac{\eps}{8})) = \frac{\eps}{2} < \eps$,
+	therefore the set of discontinuities of $f$ on $[1,5]$
+	has Lebesgue measure $0$ and is bounded on that same interval.
+	This is true if and only if
+	$f$ is Riemann integrable on $[1,5]$.
+	
+	Let $\delta > 0$ be small
+	and define the partition
+	$P = \{1, 2-\delta, 2+\delta,4-\delta,4+\delta,5\}$.
+	We calculate the lower sum:
+	\begin{align}
+		L(f,P) & =\sum_{j=1}^5 \infx{x \in I_j} f(x) \cdot \Delta x_j \\
+		       & = 3(2-\delta-1) + 2(2+\delta - 2+\delta) 2(4-\delta-2-\delta) \nonumber \\
+		       & + 2(4 + \delta - 4 + \delta) + 4(5-4-\delta) \\
+		       & = 11-3\delta
+	\end{align}
+	And the upper sum:
+	\begin{align}
+		U(f,P) & =\sum_{j=1}^5 \supx{x \in I_j} f(x) \cdot \Delta x_j \\
+		       & = 3(2-\delta-1) + 3(2+\delta - 2+\delta) 2(4-\delta-2-\delta) \nonumber \\
+		       & + 4(4 + \delta - 4 + \delta) + 4(5-4-\delta) \\
+		       & = 11+3\delta
+	\end{align}
+	As in the previous problem,
+	we have $L(f,P) \le L(f) \le U(f) \le U(f,P)$,
+	so for an arbitrarily small $\delta > 0$, we have
+	$11-3\delta \le L(f) \le U(f) \le 11 + 3\delta$
+	therefore $11 = L(f) = U(f)$,
+	or equivalently
+	$\underset{[1,5]}{\int}f = 11$.
+\end{proof}
+
+\end{document}
